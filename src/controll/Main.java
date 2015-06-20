@@ -1,4 +1,4 @@
-package ch.wetret.gp_maze_solver;
+package controll;
 
 
 public class Main {
