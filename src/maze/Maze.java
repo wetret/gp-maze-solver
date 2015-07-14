@@ -13,16 +13,10 @@ public class Maze extends JPanel {
     
     private static final long serialVersionUID = 1L;
     private int[][] mGrid;
-    private int mWidth;
-    private int mHeight;
     private int mAgentCordX;
     private int mAgentCordY;
     
-    public Maze(){
-        mWidth = Config.DEFAULT.getGridWidth();
-        mHeight = Config.DEFAULT.getGridHeight();
-        mGrid = new int[mWidth][mHeight];
-        
+    public Maze(){       
         mAgentCordX = Config.DEFAULT.getAgentXCordStart();
         mAgentCordY = Config.DEFAULT.getAgentYCordStart();
         
@@ -30,21 +24,7 @@ public class Maze extends JPanel {
     }
     
     private void init(){
-//        mGrid = MazeBuilder.build();
-        
-        for(int i = 0; i < mWidth; i++){
-            for(int j = 0; j < mHeight; j++){
-                if(i == 0 || j == 0 || i == mWidth - 1 || j == mHeight - 1){
-                    mGrid[i][j] = Config.DEFAULT.getWallPosition();
-                } else {
-                    mGrid[i][j] = Config.DEFAULT.getNotWallPosition();
-                }
-            }
-        }
-        
-        for (int k = 6; k > 2; k--){
-            mGrid[mWidth-1][mHeight - k] = Config.DEFAULT.getGoalPosition();
-        }
+        mGrid = MazeBuilder.build();
         
         mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
     }
@@ -55,8 +35,8 @@ public class Maze extends JPanel {
         g.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
         //draw the grid
-        for (int i = 0; i < mWidth; i++) {
-            for (int j = 0; j < mHeight; j++) {
+        for (int i = 0; i < Config.DEFAULT.getGridHeight(); i++) {
+            for (int j = 0; j < Config.DEFAULT.getGridWidth(); j++) {
                 int cell = mGrid[i][j];
                 if (cell == Config.DEFAULT.getNotWallPosition()) {
                     g.setColor(Color.WHITE);

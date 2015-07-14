@@ -15,8 +15,8 @@ import utils.Config;
 public class Main {
     
     public static void main(String args[]){ 
-//        showMaze();
-        showPopulation();
+        showMaze();
+//        showPopulation();
     }
     
     private static void showPopulation(){
