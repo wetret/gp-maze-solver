@@ -1,6 +1,5 @@
-package evaluationtree;
+package tree;
 
-import evaluationtree.moves.Move;
 import maze.Maze;
 
 

@@ -1,7 +1,8 @@
-package evaluationtree.moves;
+package tree.moves.terminals;
 
+import tree.IMoveNode;
+import tree.Move;
 import maze.Maze;
-import evaluationtree.IMoveNode;
 
 
 public class MoveWest implements IMoveNode{
@@ -13,8 +14,7 @@ public class MoveWest implements IMoveNode{
 
     @Override
     public String evaluationToString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "Move.WEST;";
     }
 
 }

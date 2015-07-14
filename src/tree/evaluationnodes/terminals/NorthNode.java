@@ -1,6 +1,6 @@
-package evaluationtree.evaluationnodes.terminals;
+package tree.evaluationnodes.terminals;
 
-import evaluationtree.IEvaluationNode;
+import tree.IEvaluationNode;
 import maze.Maze;
 
 
@@ -13,8 +13,7 @@ public class NorthNode implements IEvaluationNode {
 
     @Override
     public String evaluationToString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "pMaze.isWallNorth()";
     }
 
 }

@@ -1,28 +1,27 @@
-package evaluationtree.evaluationnodes.unarynodes;
+package tree.evaluationnodes.unarynodes;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import tree.IEvaluationNode;
+import tree.NodeBuilder;
 import maze.Maze;
-import evaluationtree.IEvaluationNode;
-import evaluationtree.IMoveNode;
-import evaluationtree.moves.Move;
 
 
 public class NotNode implements IEvaluationNode{
     
 
-    private List<IEvaluationNode> children = new ArrayList<IEvaluationNode>(1);
+    private IEvaluationNode child;
+    
+    public NotNode() {
+        child = NodeBuilder.getEvaluationNode();
+    }
 
     @Override
     public boolean evaluate(Maze pMaze) {
-        return !children.get(1).evaluate(pMaze);
+        return !child.evaluate(pMaze);
     }
 
     @Override
     public String evaluationToString() {
-        // TODO Auto-generated method stub
-        return null;
+        return " !( " + child.evaluationToString() + " )";
     }
 
 }

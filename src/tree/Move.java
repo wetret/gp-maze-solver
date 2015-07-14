@@ -1,4 +1,4 @@
-package evaluationtree.moves;
+package tree;
 
 
 public enum Move {

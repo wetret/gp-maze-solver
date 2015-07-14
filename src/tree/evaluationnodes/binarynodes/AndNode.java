@@ -1,26 +1,37 @@
-package evaluationtree.evaluationnodes.binarynodes;
+package tree.evaluationnodes.binarynodes;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import tree.IEvaluationNode;
+import tree.NodeBuilder;
 import maze.Maze;
-import evaluationtree.IEvaluationNode;
 
 
 public class AndNode implements IEvaluationNode{
     
 
-    private List<IEvaluationNode> children = new ArrayList<IEvaluationNode>(2);
+    private List<IEvaluationNode> mChildren;
+    
+    public AndNode() {
+        mChildren = new ArrayList<IEvaluationNode>(2);
+        setChildren();
+    }
 
     @Override
     public boolean evaluate(Maze pMaze) {
-        return children.get(1).evaluate(pMaze) && children.get(2).evaluate(pMaze);
+        return mChildren.get(1).evaluate(pMaze) && mChildren.get(2).evaluate(pMaze);
     }
 
     @Override
     public String evaluationToString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "( " + mChildren.get(0).evaluationToString() + " && " + mChildren.get(1).evaluationToString() + " )";
+    }
+    
+    private void setChildren() {
+        for (int i = 0; i < 2; i++){
+            mChildren.add(NodeBuilder.getEvaluationNode());
+        }
     }
 
 }

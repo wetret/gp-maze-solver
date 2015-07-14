@@ -1,4 +1,4 @@
-package evaluationtree;
+package tree;
 
 import maze.Maze;
 
