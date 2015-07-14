@@ -21,7 +21,7 @@ public class NotNode implements IEvaluationNode{
 
     @Override
     public String evaluationToString() {
-        return " !( " + child.evaluationToString() + " )";
+        return "!( " + child.evaluationToString() + " )";
     }
 
 }
