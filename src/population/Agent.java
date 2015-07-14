@@ -58,5 +58,9 @@ public class Agent {
    public int getYCord(){
        return mAgentYCord;
    }
+   
+   public IMoveNode getEvaluationTree(){
+       return mRoot;
+   }
 
 }

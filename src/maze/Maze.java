@@ -30,6 +30,8 @@ public class Maze extends JPanel {
     }
     
     private void init(){
+//        mGrid = MazeBuilder.build();
+        
         for(int i = 0; i < mWidth; i++){
             for(int j = 0; j < mHeight; j++){
                 if(i == 0 || j == 0 || i == mWidth - 1 || j == mHeight - 1){
@@ -38,6 +40,10 @@ public class Maze extends JPanel {
                     mGrid[i][j] = Config.DEFAULT.getNotWallPosition();
                 }
             }
+        }
+        
+        for (int k = 6; k > 2; k--){
+            mGrid[mWidth-1][mHeight - k] = Config.DEFAULT.getGoalPosition();
         }
         
         mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
@@ -57,9 +63,15 @@ public class Maze extends JPanel {
                 } else if (cell == Config.DEFAULT.getWallPosition()) {
                     g.setColor(Color.BLACK);
                 } else if (cell == Config.DEFAULT.getAgentPosition()) {
-                    g.setColor(Color.RED);
-                } else {
+                    g.setColor(Color.BLUE);
+                } else if (cell == Config.DEFAULT.getGoalPosition()) {
                     g.setColor(Color.GREEN);
+                } else {
+                    g.setColor(Color.YELLOW);
+                }
+                
+                if(i == 0 && j == 2){
+                    g.setColor(Color.RED);
                 }
                 
                 int x = Config.DEFAULT.getPixelSize() * i;
@@ -67,8 +79,7 @@ public class Maze extends JPanel {
                 
                 g.fillRect(x, y, Config.DEFAULT.getPixelSize(), Config.DEFAULT.getPixelSize());
             }
-        }
-        
+        } 
     }
     
     public boolean isWallEast(){

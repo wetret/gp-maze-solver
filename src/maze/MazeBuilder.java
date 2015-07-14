@@ -3,7 +3,7 @@ package maze;
 
 public class MazeBuilder {
     
-    public static Maze getMaze(){
+    public static int[][] build(){
         return null;
     }
 

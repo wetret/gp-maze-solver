@@ -2,7 +2,7 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(20, 20, 7, 100, 100, 10, 10, 0, 1, 2);
+    DEFAULT(50, 50, 7, 100, 100, 1, 2, 0, 1, 2, 3);
    
 
     private int mGridWidth;
@@ -15,8 +15,10 @@ public enum Config {
     private int mNotWallPosition;
     private int mWallPosition;
     private int mAgentPosition;
+    private int mGoalPosition;
 
-    Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, int pNotWallPosition, int pWallPosition, int pAgentPosition) {
+    Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
@@ -27,6 +29,7 @@ public enum Config {
         mNotWallPosition = pNotWallPosition;
         mWallPosition = pWallPosition;
         mAgentPosition = pAgentPosition;
+        mGoalPosition = pGoalPosition;
     }
     
     public int getGridWidth() {
@@ -67,6 +70,10 @@ public enum Config {
     
     public int getAgentPosition(){
         return mAgentPosition;
+    }
+    
+    public int getGoalPosition(){
+        return mGoalPosition;
     }
 
 }
