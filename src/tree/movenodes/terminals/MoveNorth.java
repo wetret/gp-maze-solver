@@ -1,4 +1,4 @@
-package tree.moves.terminals;
+package tree.movenodes.terminals;
 
 import tree.IMoveNode;
 import tree.Move;

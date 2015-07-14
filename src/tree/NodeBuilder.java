@@ -13,11 +13,11 @@ import tree.evaluationnodes.terminals.SouthNode;
 import tree.evaluationnodes.terminals.SouthWestNode;
 import tree.evaluationnodes.terminals.WestNode;
 import tree.evaluationnodes.unarynodes.NotNode;
-import tree.moves.terminals.MoveEast;
-import tree.moves.terminals.MoveNorth;
-import tree.moves.terminals.MoveSouth;
-import tree.moves.terminals.MoveWest;
-import tree.moves.ternarynodes.ConditionalNode;
+import tree.movenodes.terminals.MoveEast;
+import tree.movenodes.terminals.MoveNorth;
+import tree.movenodes.terminals.MoveSouth;
+import tree.movenodes.terminals.MoveWest;
+import tree.movenodes.ternarynodes.ConditionalNode;
 import utils.ERandom;
 
 

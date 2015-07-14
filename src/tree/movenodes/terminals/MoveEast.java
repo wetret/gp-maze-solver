@@ -1,20 +1,20 @@
-package tree.moves.terminals;
+package tree.movenodes.terminals;
 
 import tree.IMoveNode;
 import tree.Move;
 import maze.Maze;
 
 
-public class MoveSouth implements IMoveNode{
+public class MoveEast implements IMoveNode{
 
     @Override
     public Move evaluate(Maze pMaze) {
-       return Move.SOUTH;
+        return Move.EAST;
     }
 
     @Override
     public String evaluationToString() {
-        return "Move.SOUTH;";
+        return "Move.EAST;";
     }
 
 }

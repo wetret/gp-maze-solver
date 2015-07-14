@@ -1,4 +1,4 @@
-package tree.moves.ternarynodes;
+package tree.movenodes.ternarynodes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,9 @@ public class ConditionalNode implements IMoveNode{
     @Override
     public Move evaluate(Maze pMaze) {
         if (mEvaluationChild.evaluate(pMaze)) {
-            return mMoveChildren.get(1).evaluate(pMaze);
+            return mMoveChildren.get(0).evaluate(pMaze);
         } else {
-            return mMoveChildren.get(2).evaluate(pMaze);
+            return mMoveChildren.get(1).evaluate(pMaze);
         }
     }
 
@@ -34,7 +34,7 @@ public class ConditionalNode implements IMoveNode{
         return "if ( " + mEvaluationChild.evaluationToString() + " ) { " +
                     getString(mMoveChildren.get(0)) +
                " } else { " + 
-                   getString(mMoveChildren.get(0)) +
+                   getString(mMoveChildren.get(1)) +
                " }";
     }
     

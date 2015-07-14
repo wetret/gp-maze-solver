@@ -15,11 +15,17 @@ public class Maze extends JPanel {
     private int[][] mGrid;
     private int mWidth;
     private int mHeight;
+    private int mAgentCordX;
+    private int mAgentCordY;
     
     public Maze(){
         mWidth = Config.DEFAULT.getGridWidth();
         mHeight = Config.DEFAULT.getGridHeight();
         mGrid = new int[mWidth][mHeight];
+        
+        mAgentCordX = Config.DEFAULT.getAgentXCordStart();
+        mAgentCordY = Config.DEFAULT.getAgentYCordStart();
+        
         init();
     }
     
@@ -27,12 +33,14 @@ public class Maze extends JPanel {
         for(int i = 0; i < mWidth; i++){
             for(int j = 0; j < mHeight; j++){
                 if(i == 0 || j == 0 || i == mWidth - 1 || j == mHeight - 1){
-                    mGrid[i][j] = 1;
+                    mGrid[i][j] = Config.DEFAULT.getWallPosition();
                 } else {
-                    mGrid[i][j] = 0;
+                    mGrid[i][j] = Config.DEFAULT.getNotWallPosition();
                 }
             }
         }
+        
+        mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
     }
     
     public void paint(Graphics g) {
@@ -44,10 +52,14 @@ public class Maze extends JPanel {
         for (int i = 0; i < mWidth; i++) {
             for (int j = 0; j < mHeight; j++) {
                 int cell = mGrid[i][j];
-                if (cell == 0) {
+                if (cell == Config.DEFAULT.getNotWallPosition()) {
                     g.setColor(Color.WHITE);
-                } else {
+                } else if (cell == Config.DEFAULT.getWallPosition()) {
                     g.setColor(Color.BLACK);
+                } else if (cell == Config.DEFAULT.getAgentPosition()) {
+                    g.setColor(Color.RED);
+                } else {
+                    g.setColor(Color.GREEN);
                 }
                 
                 int x = Config.DEFAULT.getPixelSize() * i;
@@ -60,36 +72,74 @@ public class Maze extends JPanel {
     }
     
     public boolean isWallEast(){
-        return false;
+      if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+          return true;
+      } else {
+          return false;
+      }
     }
     
     public boolean isWallNorthEast(){
-        return false;
+        if(mGrid[mAgentCordX + 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public boolean isWallNorth(){
-        return false;
+        if(mGrid[mAgentCordX][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isWallNorthWest(){
-        return false;
+        if(mGrid[mAgentCordX - 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public boolean isWallWest(){
-        return false;
+        if(mGrid[mAgentCordX - 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
     public boolean isWallSouthWest(){
-        return false;
+        if(mGrid[mAgentCordX - 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isWallSouth(){
-        return false;
+        if(mGrid[mAgentCordX][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isWallSouthEast(){
-        return false;
+        if(mGrid[mAgentCordX + 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+            return true;
+        } else {
+            return false;
+        }
     }
-
+    
+    public void setNewAgentCord(int pNewXCord, int pNewYCord){
+        mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getNotWallPosition();
+        mAgentCordX = pNewXCord;
+        mAgentCordY = pNewYCord;
+        mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
+    }
 }

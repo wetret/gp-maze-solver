@@ -20,7 +20,7 @@ public class OrNode implements IEvaluationNode{
 
     @Override
     public boolean evaluate(Maze pMaze) {
-        return mChildren.get(1).evaluate(pMaze) || mChildren.get(2).evaluate(pMaze);
+        return mChildren.get(0).evaluate(pMaze) || mChildren.get(1).evaluate(pMaze);
     }
 
     @Override
