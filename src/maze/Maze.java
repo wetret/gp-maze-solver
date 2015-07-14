@@ -16,10 +16,10 @@ public class Maze extends JPanel {
     private int mWidth;
     private int mHeight;
     
-    public Maze(int pWidth, int pHeight){
-        mGrid = new int[pWidth][pHeight];
-        mWidth = pWidth;
-        mHeight = pHeight;
+    public Maze(){
+        mWidth = Config.DEFAULT.getGridWidth();
+        mHeight = Config.DEFAULT.getGridHeight();
+        mGrid = new int[mWidth][mHeight];
         init();
     }
     
@@ -41,8 +41,8 @@ public class Maze extends JPanel {
         g.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
         //draw the grid
-        for (int i = 0; i < Config.DEFAULT.getGridSize(); i++) {
-            for (int j = 0; j < Config.DEFAULT.getGridSize(); j++) {
+        for (int i = 0; i < mWidth; i++) {
+            for (int j = 0; j < mHeight; j++) {
                 int cell = mGrid[i][j];
                 if (cell == 0) {
                     g.setColor(Color.WHITE);

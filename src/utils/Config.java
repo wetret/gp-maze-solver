@@ -2,23 +2,29 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(50, 7, 100, 100);
+    DEFAULT(75,50, 7, 100, 100);
    
 
-    private int mGridSize;
+    private int mGridWidth;
+    private int mGridHeight;
     private int mPixelSize;
     private int mXCord;
     private int mYCord;
 
-    Config(int pGridSize, int pPixelSize, int pXCord, int pYCord) {
-        mGridSize = pGridSize;
+    Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord) {
+        mGridWidth = pGridWidth;
+        mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
         mXCord = pXCord;
         mYCord = pYCord;
     }
-
-    public int getGridSize() {
-        return mGridSize;
+    
+    public int getGridWidth() {
+        return mGridWidth;
+    }
+    
+    public int getGridHeight() {
+        return mGridHeight;
     }
 
     public int getPixelSize() {
