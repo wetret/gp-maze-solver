@@ -5,11 +5,11 @@ import tree.IMoveNode;
 import tree.Move;
 
 
-public class EvolvedAgentExample implements IMoveNode{
+public class EvolvedAgentFunctionExample implements IMoveNode{
 
     @Override
     public Move evaluate(Maze pMaze) {
-        // add the generated agentfunction from GeneticProgramming.evolve() here.
+        // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
         
         return null;
