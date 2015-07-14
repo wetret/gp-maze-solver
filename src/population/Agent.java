@@ -48,7 +48,21 @@ public class Agent {
                break;
        }
        
+       if(goalReached()){
+           System.out.println("FOUND ESCAPE!!");
+           System.exit(0);
+       }
+       
        mMaze.setNewAgentCord(mAgentXCord, mAgentYCord);
+   }
+   
+   private boolean goalReached(){
+       System.out.println(mMaze.getGrid()[mAgentXCord][mAgentYCord]);
+       if(mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getGoalPosition()){
+           return true;
+       } else {
+           return false;
+       }
    }
    
    public int getXCord(){

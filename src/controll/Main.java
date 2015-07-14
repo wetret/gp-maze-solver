@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import population.Agent;
 import population.PopulationBuilder;
+import population.evolvedagentfunctions.EvolvedAgentFunctionExample;
 import maze.Maze;
 import tree.IMoveNode;
 import tree.TreeBuilder;
@@ -35,8 +36,9 @@ public class Main {
         top.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         top.setResizable(true);
         
-        IMoveNode root = new TreeBuilder().build();
-        System.out.println(root.evaluationToString());
+//        IMoveNode root = new TreeBuilder().build();
+        IMoveNode root = new EvolvedAgentFunctionExample();
+//        System.out.println(root.evaluationToString());
         
         Maze maze = new Maze();
         Agent agent = new Agent(root, maze);
@@ -44,11 +46,11 @@ public class Main {
         top.getContentPane().add(maze);
         top.setVisible(true);
         
-        for (int i = 0; i < 100; i++){   
+        for (int i = 0; i < 100; i++){ 
             agent.move();
             
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException pEx) {
                 pEx.printStackTrace();
             }

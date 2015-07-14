@@ -133,4 +133,8 @@ public class Maze extends JPanel {
         mAgentCordY = pNewYCord;
         mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
     }
+    
+    public int[][] getGrid(){
+        return mGrid;
+    }
 }
