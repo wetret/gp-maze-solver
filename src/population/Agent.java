@@ -57,7 +57,6 @@ public class Agent {
    }
    
    private boolean goalReached(){
-       System.out.println(mMaze.getGrid()[mAgentXCord][mAgentYCord]);
        if(mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getGoalPosition()){
            return true;
        } else {
