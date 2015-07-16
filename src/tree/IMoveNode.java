@@ -3,8 +3,7 @@ package tree;
 import maze.Maze;
 
 
-public interface IMoveNode {
+public interface IMoveNode extends INode{
 
     public Move evaluate(Maze pMaze);
-    public String evaluationToString();
 }

@@ -14,15 +14,19 @@ public class Agent {
     private int mAgentXCord;
     private int mAgentYCord;
     
+    private int mFitness;
+    
    public Agent(IMoveNode pRoot, Maze pMaze) {
         mRoot = pRoot;
         mMaze = pMaze;
         
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+        
+        mFitness = 100000;
    }
    
-   public void move(){
+   public boolean move(){
        Move move = mRoot.evaluate(mMaze);
        
        switch(move){
@@ -50,10 +54,11 @@ public class Agent {
        
        if(goalReached()){
            System.out.println("FOUND ESCAPE!!");
-           System.exit(0);
+           return false;
        }
        
        mMaze.setNewAgentCord(mAgentXCord, mAgentYCord);
+       return true;
    }
    
    private boolean goalReached(){
@@ -74,6 +79,14 @@ public class Agent {
    
    public IMoveNode getEvaluationTree(){
        return mRoot;
+   }
+   
+   public int getFitness() {
+       return mFitness;
+   }
+   
+   public void setFitness(int pFitness) {
+       mFitness = pFitness;
    }
 
 }

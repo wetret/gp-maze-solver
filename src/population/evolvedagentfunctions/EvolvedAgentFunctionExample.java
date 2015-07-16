@@ -1,7 +1,10 @@
 package population.evolvedagentfunctions;
 
+import java.util.List;
+
 import maze.Maze;
 import tree.IMoveNode;
+import tree.INode;
 import tree.Move;
 
 
@@ -35,6 +38,23 @@ public class EvolvedAgentFunctionExample implements IMoveNode{
         // remove "return null"
         
         return null;
+    }
+
+    @Override
+    public List<INode> getFlattenedTree() {
+        // leave as is
+        return null;
+    }
+
+    @Override
+    public INode getParent() {
+        // leave as is
+        return null;
+    }
+
+    @Override
+    public void setParent(INode pParent) {
+       // leave as is  
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tree.IEvaluationNode;
+import tree.INode;
 import tree.NodeBuilder;
 import maze.Maze;
 
@@ -12,9 +13,11 @@ public class OrNode implements IEvaluationNode{
     
 
     private List<IEvaluationNode> mChildren;
+    private INode mParent;
     
-    public OrNode() {
+    public OrNode(INode pParent) {
         mChildren = new ArrayList<IEvaluationNode>(2);
+        setParent(pParent);
         setChildren();
     }
 
@@ -30,8 +33,30 @@ public class OrNode implements IEvaluationNode{
     
     private void setChildren() {
         for (int i = 0; i < 2; i++){
-            mChildren.add(NodeBuilder.getEvaluationNode());
+            mChildren.add(NodeBuilder.getEvaluationNode(this));
         }
+    }
+    
+    @Override
+    public List<INode> getFlattenedTree() {
+        List<INode> nodes = new ArrayList<INode>();
+        nodes.add(this);
+        
+        for(IEvaluationNode child : mChildren){
+            nodes.addAll(child.getFlattenedTree());
+        }
+        
+        return nodes;
+    }
+
+    @Override
+    public INode getParent() {
+        return mParent;
+    }
+
+    @Override
+    public void setParent(INode pParent) {
+        mParent = pParent;
     }
 
 }

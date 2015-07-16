@@ -5,6 +5,7 @@ import java.util.List;
 
 import tree.IEvaluationNode;
 import tree.IMoveNode;
+import tree.INode;
 import tree.Move;
 import tree.NodeBuilder;
 import maze.Maze;
@@ -14,9 +15,11 @@ public class ConditionalNode implements IMoveNode{
     
     private IEvaluationNode mEvaluationChild;
     private List<IMoveNode> mMoveChildren;
+    private INode mParent;
     
-    public ConditionalNode() {
+    public ConditionalNode(INode pParent) {
         mMoveChildren = new ArrayList<IMoveNode>(2);
+        setParent(null);
         setChildren();
     }
 
@@ -48,10 +51,34 @@ public class ConditionalNode implements IMoveNode{
     
     private void setChildren() {
         for(int i = 0; i < 2; i++){
-            mMoveChildren.add(NodeBuilder.getMoveNode());
+            mMoveChildren.add(NodeBuilder.getMoveNode(this));
         }
         
-        mEvaluationChild = NodeBuilder.getEvaluationNode();
+        mEvaluationChild = NodeBuilder.getEvaluationNode(this);
+    }
+
+    @Override
+    public List<INode> getFlattenedTree() {
+        List<INode> nodes = new ArrayList<INode>();
+        nodes.add(this);
+        
+        nodes.addAll(mEvaluationChild.getFlattenedTree());
+        
+        for(IMoveNode moveChild : mMoveChildren){
+            nodes.addAll(moveChild.getFlattenedTree());
+        }
+        
+        return nodes;
+    }
+
+    @Override
+    public INode getParent() {
+        return mParent;
+    }
+
+    @Override
+    public void setParent(INode pParent) {
+        mParent = pParent;
     }
     
 }

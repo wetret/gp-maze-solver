@@ -2,7 +2,7 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(25, 25, 7, 100, 100, 1, 2, 0, 1, 2, 3);
+    DEFAULT(25, 25, 7, 100, 100, 1, 2, 0, 1, 2, 3, 24, 22, 100);
    
 
     private int mGridWidth;
@@ -16,9 +16,12 @@ public enum Config {
     private int mWallPosition;
     private int mAgentPosition;
     private int mGoalPosition;
+    private int mGoalCordX;
+    private int mGoalCordY;
+    private int mMaxMoves;
 
     Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition) {
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pGoalCordX, int pGoalCordY, int pMaxMoves) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
@@ -30,6 +33,9 @@ public enum Config {
         mWallPosition = pWallPosition;
         mAgentPosition = pAgentPosition;
         mGoalPosition = pGoalPosition;
+        mGoalCordX = pGoalCordX;
+        mGoalCordY = pGoalCordY;
+        mMaxMoves = pMaxMoves;
     }
     
     public int getGridWidth() {
@@ -74,6 +80,18 @@ public enum Config {
     
     public int getGoalPosition(){
         return mGoalPosition;
+    }
+    
+    public int getGoalCordX(){
+        return mGoalCordX;
+    }
+    
+    public int getGoalCordY(){
+        return mGoalCordY;
+    }
+    
+    public int getMaxMoves(){
+        return mMaxMoves;
     }
 
 }

@@ -21,9 +21,7 @@ public class MazeBuilder {
             }
         }
         
-        for (int k = 5; k > 2; k--){
-            grid[width-1][height - k] = Config.DEFAULT.getGoalPosition();
-        }
+        grid[Config.DEFAULT.getGoalCordX()][Config.DEFAULT.getGoalCordY()] = Config.DEFAULT.getGoalPosition();
         
         for(int i = 1; i < height - 6; i++){
             grid[9][i] = Config.DEFAULT.getWallPosition();

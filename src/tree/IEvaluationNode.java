@@ -3,8 +3,7 @@ package tree;
 import maze.Maze;
 
 
-public interface IEvaluationNode {
+public interface IEvaluationNode extends INode{
     
     public boolean evaluate(Maze pMaze);
-    public String evaluationToString();
 }
