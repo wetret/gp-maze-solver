@@ -11,18 +11,19 @@ import tree.evaluationnodes.binarynodes.AndNode;
 import tree.evaluationnodes.binarynodes.OrNode;
 import tree.evaluationnodes.unarynodes.NotNode;
 import tree.movenodes.ternarynodes.ConditionalNode;
+import utils.Config;
 import utils.ERandom;
 
 public class Mutation {
     
     public static void apply(List<Agent> pPopulation){
         Random rand = ERandom.INSTANCE.getRandom();
-        double splitValue = 1.0;
+        double mutationPercentage = Config.DEFAULT.getMutationPercentage();
         
         for(Agent agent : pPopulation){
             double randomDouble = rand.nextDouble();
             
-            if(randomDouble < splitValue){
+            if(randomDouble < mutationPercentage){
                List<INode> flattenedTree =  agent.getEvaluationTree().getFlattenedTree();
                int size = flattenedTree.size();
                int mutationPoint = rand.nextInt(size);

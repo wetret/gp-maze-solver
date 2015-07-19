@@ -19,7 +19,7 @@ public class Fitness {
             agent.setFitness(fitness);
         }
         
-        Collections.sort(pPopulation, new AgentComparator());
+//        Collections.sort(pPopulation, new AgentComparator());
     }
 
 }

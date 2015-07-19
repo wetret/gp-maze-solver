@@ -18,8 +18,8 @@ public class GeneticProgramming {
         
         print(1);
         
-//        Crossover.apply(mPopulation);
-        Mutation.apply(mPopulation);
+        Crossover.apply(mPopulation);
+//        Mutation.apply(mPopulation);
         TestRun.apply(mPopulation);
         Fitness.calculate(mPopulation);
         
