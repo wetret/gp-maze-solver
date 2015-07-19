@@ -16,20 +16,22 @@ public class GeneticProgramming {
     
     public String evolve(){
         
+        print(1);
+        
 //        Crossover.apply(mPopulation);
-//        Mutation.apply(mPopulation);
+        Mutation.apply(mPopulation);
         TestRun.apply(mPopulation);
         Fitness.calculate(mPopulation);
         
-        print();
+        print(2);
         
         // Return the best AgentFunction
         return mPopulation.get(0).getEvaluationTree().evaluationToString();
     }
     
-    public void print(){
+    public void print(int step){
         for(int i = 0; i < mPopulation.size(); i++){
-            System.out.println("Fitness: " + mPopulation.get(i).getFitness() + "\nAgentFunction: " + mPopulation.get(i).getEvaluationTree().evaluationToString() + "\n");
+            System.out.println(step + " Fitness: " + mPopulation.get(i).getFitness() + "\nAgentFunction: " + mPopulation.get(i).getEvaluationTree().evaluationToString() + "\n");
         }
     }
     

@@ -81,4 +81,23 @@ public class ConditionalNode implements IMoveNode{
         mParent = pParent;
     }
     
+    public List<INode> getChildren(){
+        List<INode> children = new ArrayList<INode>();
+        children.addAll(mMoveChildren);
+        children.add(mEvaluationChild);
+        
+        return children;
+    }
+    
+    public void setChild(int pPosition, INode pNewChild){
+        if(pNewChild instanceof IEvaluationNode){
+            mEvaluationChild = (IEvaluationNode) pNewChild;
+        } else {
+            if(pNewChild instanceof IMoveNode){
+                mMoveChildren.set(pPosition, (IMoveNode) pNewChild);
+                
+            }
+        }
+    }
+    
 }

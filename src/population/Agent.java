@@ -9,6 +9,7 @@ import utils.Config;
 public class Agent {
     
     private IMoveNode mRoot;
+
     private Maze mMaze;
     
     private int mAgentXCord;
@@ -87,6 +88,10 @@ public class Agent {
    
    public void setFitness(int pFitness) {
        mFitness = pFitness;
+   }
+   
+   public void setRoot(IMoveNode pRoot) {
+       mRoot = pRoot;
    }
 
 }

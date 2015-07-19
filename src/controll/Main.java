@@ -25,7 +25,7 @@ public class Main {
     }
     
     private static void geneticProgramming() {
-        new GeneticProgramming(20).evolve();
+        new GeneticProgramming(1).evolve();
     }
     
     private static void showPopulation(){

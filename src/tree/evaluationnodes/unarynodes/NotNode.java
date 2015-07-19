@@ -55,4 +55,14 @@ public class NotNode implements IEvaluationNode{
         mParent = pParent;
     }
 
+    public List<INode> getChildren() {
+        List<INode> child = new ArrayList<INode>();
+        child.add(mChildren.get(0));
+        return child;
+    }
+
+    public void setChild(INode pNewChild) {
+        mChildren.set(0, (IEvaluationNode) pNewChild);
+    }
+
 }

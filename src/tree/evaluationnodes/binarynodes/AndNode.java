@@ -59,4 +59,12 @@ public class AndNode implements IEvaluationNode{
         mParent = pParent;
     }
 
+    public List<IEvaluationNode> getChildren() {
+        return mChildren;
+    }
+
+    public void setChild(int pPosition, IEvaluationNode pNewChild) {
+        mChildren.set(pPosition, pNewChild);
+    }
+
 }
