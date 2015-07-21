@@ -14,19 +14,25 @@ public class GeneticProgramming {
         mPopulation = PopulationBuilder.build(pPopulationSize);
     }
     
-    public String evolve(){
+    public Agent evolve(){
+        int generation = 0;
         
-        print(1);
-        
-        Crossover.apply(mPopulation);
-//        Mutation.apply(mPopulation);
         TestRun.apply(mPopulation);
         Fitness.calculate(mPopulation);
         
-        print(2);
+        while(mPopulation.get(0).getFitness() != 0) { 
+            System.out.println("Generation :" + generation);
+            
+            Crossover.apply(mPopulation);
+            Mutation.apply(mPopulation);
+            TestRun.apply(mPopulation);
+            Fitness.calculate(mPopulation);
+            
+            generation++;
+        }
         
-        // Return the best AgentFunction
-        return mPopulation.get(0).getEvaluationTree().evaluationToString();
+        // Return the best Agent
+        return mPopulation.get(0);
     }
     
     public void print(int step){

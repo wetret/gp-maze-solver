@@ -2,55 +2,25 @@ package controll;
 
 import gp.GeneticProgramming;
 
-import java.util.List;
-
 import javax.swing.JFrame;
 
 import population.Agent;
-import population.PopulationBuilder;
 import population.evolvedagentfunctions.EvolvedAgentFunctionExample;
 import maze.Maze;
 import tree.IMoveNode;
-import tree.TreeBuilder;
 import utils.Config;
 
 
 public class Main {
     
     public static void main(String args[]){ 
-//        withoutWindow();
 //        withWindow();
-//        showPopulation();
         geneticProgramming();
     }
     
     private static void geneticProgramming() {
-        new GeneticProgramming(2).evolve();
-    }
-    
-    private static void showPopulation(){
-        List<Agent> population = PopulationBuilder.build(50);
-        
-        for(int i = 0; i < population.size(); i++){
-            System.out.println(population.get(i).getEvaluationTree().evaluationToString());
-            System.out.println("");
-        }
-    }
-    
-    private static void withoutWindow(){
-//      IMoveNode root = new TreeBuilder().build();
-        IMoveNode root = new EvolvedAgentFunctionExample();
-        
-        Maze maze = new Maze();
-        Agent agent = new Agent(root, maze);
-        
-        boolean notReachedGoal = true;
-        
-        for (int i = 0; i < 100; i++){
-           while(notReachedGoal){
-               notReachedGoal = agent.move();
-           }
-        }
+       Agent best = new GeneticProgramming(100).evolve();
+       System.out.println("\n" + best.getFitness() + " " + best.getEvaluationTree().evaluationToString());
     }
     
     private static void withWindow(){
@@ -72,18 +42,16 @@ public class Main {
         
         boolean notReachedGoal = true;
         
-        for (int i = 0; i < 100; i++){
-           while(notReachedGoal){
-               notReachedGoal = agent.move();
+        while(notReachedGoal){
+            notReachedGoal = agent.move();
                 
-               try {
+            try {
                 Thread.sleep(100);
-                } catch (InterruptedException pEx) {
-                    pEx.printStackTrace();
-                }
+            } catch (InterruptedException pEx) {
+                pEx.printStackTrace();
+            }
                
-               top.repaint();
-           }
+            top.repaint();
         }
     }
 }

@@ -44,4 +44,9 @@ public class MoveEast implements IMoveNode{
     public void setParent(INode pParent) {
         mParent = pParent;
     }
+
+    @Override
+    public INode getCopy() {
+        return new MoveEast(mParent);
+    }
 }

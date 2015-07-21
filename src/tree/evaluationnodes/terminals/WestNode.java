@@ -44,4 +44,9 @@ public class WestNode implements IEvaluationNode {
         mParent = pParent;
     }
 
+    @Override
+    public INode getCopy() {
+        return new WestNode(mParent);
+    }
+
 }

@@ -27,6 +27,7 @@ public class Agent {
         mFitness = 100000;
    }
    
+
    public boolean move(){
        Move move = mRoot.evaluate(mMaze);
        
@@ -92,6 +93,18 @@ public class Agent {
    
    public void setRoot(IMoveNode pRoot) {
        mRoot = pRoot;
+   }
+   
+   public Maze getMaze() {
+       return mMaze;
+   }
+   
+   public void setAgentXCord(int pAgentXCord) {
+       mAgentXCord = pAgentXCord;
+   }
+
+   public void setAgentYCord(int pAgentYCord) {
+       mAgentYCord = pAgentYCord;
    }
 
 }

@@ -10,4 +10,6 @@ public interface INode {
     
     public INode getParent();
     public void setParent(INode pParent);
+    
+    public INode getCopy();
 }

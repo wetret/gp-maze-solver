@@ -44,4 +44,9 @@ public class NorthEastNode implements IEvaluationNode {
         mParent = pParent;
     }
 
+    @Override
+    public INode getCopy() {
+        return new NorthEastNode(mParent);
+    }
+
 }

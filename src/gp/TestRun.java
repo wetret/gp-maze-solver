@@ -11,7 +11,11 @@ public class TestRun {
     public static void apply(List<Agent> pPopulation) {
         for(Agent agent : pPopulation){
             for(int i = 0; i < Config.DEFAULT.getMaxMoves(); i++){
-                agent.move();
+               boolean notGoalFound = agent.move();
+                
+               if(notGoalFound == false){
+                   break;
+               }
             }
         }
     }

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tree.IEvaluationNode;
+import tree.IEvaluationNonTerminal;
 import tree.INode;
 import tree.NodeBuilder;
 import maze.Maze;
 
 
-public class NotNode implements IEvaluationNode{
+public class NotNode implements IEvaluationNode, IEvaluationNonTerminal{
     
 
     private List<IEvaluationNode> mChildren;
@@ -19,6 +20,12 @@ public class NotNode implements IEvaluationNode{
         mChildren = new ArrayList<IEvaluationNode>(1);
         setParent(pParent);
         setChildren();
+    }
+    
+    // Copy constructor
+    private NotNode(NotNode pToCopy){
+        mChildren = pToCopy.getChildren();
+        mParent = pToCopy.getParent();
     }
     
     private void setChildren() {
@@ -55,14 +62,19 @@ public class NotNode implements IEvaluationNode{
         mParent = pParent;
     }
 
-    public List<INode> getChildren() {
-        List<INode> child = new ArrayList<INode>();
-        child.add(mChildren.get(0));
-        return child;
+    @Override
+    public List<IEvaluationNode> getChildren() {
+        return mChildren;
     }
 
-    public void setChild(INode pNewChild) {
-        mChildren.set(0, (IEvaluationNode) pNewChild);
+    @Override
+    public INode getCopy() {
+        return new NotNode(this);
+    }
+
+    @Override
+    public void setChild(int pPosition, IEvaluationNode pNewChild) {
+        mChildren.set(0, (IEvaluationNode) pNewChild); 
     }
 
 }

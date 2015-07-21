@@ -45,4 +45,9 @@ public class MoveSouth implements IMoveNode{
         mParent = pParent;
     }
 
+    @Override
+    public INode getCopy() {
+        return new MoveSouth(mParent);
+    }
+
 }

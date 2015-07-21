@@ -5,8 +5,10 @@ import java.util.Random;
 
 import population.Agent;
 import tree.IEvaluationNode;
+import tree.IEvaluationNonTerminal;
 import tree.IMoveNode;
 import tree.INode;
+import tree.movenodes.ternarynodes.ConditionalNode;
 import utils.ERandom;
 
 
@@ -28,8 +30,7 @@ public class Crossover {
             INode crossoverNodeOne = null;
             INode crossoverNodeTwo = null;
             
-            while(notSame){
-                
+            while(notSame){  
                 int randOne = rand.nextInt(flattenedTreeOne.size());
                 crossoverNodeOne = flattenedTreeOne.get(randOne);
                 
@@ -47,19 +48,62 @@ public class Crossover {
             
             INode parentOne = crossoverNodeOne.getParent();
             INode parentTwo = crossoverNodeTwo.getParent();
+            INode parentTwoCopy = null;
+            
+            if(parentTwo != null){    
+                parentTwoCopy = parentTwo.getCopy();
+            }
             
             if(parentOne == null){
                 one.setRoot((IMoveNode) crossoverNodeTwo);
                 crossoverNodeTwo.setParent(null);
             } else {
-                
+                if(parentOne instanceof ConditionalNode){
+                    
+                    List<INode> children = ((ConditionalNode) parentOne).getChildren();
+                    int index = 0;
+                    while(crossoverNodeOne != children.get(index)){
+                        index++;
+                    }
+                    
+                    ((ConditionalNode) parentOne).setChild(index, crossoverNodeTwo);
+                    crossoverNodeTwo.setParent(parentOne);
+                } else {
+                    List<IEvaluationNode> children = ((IEvaluationNonTerminal) parentOne).getChildren();
+                    int index = 0;
+                    while(crossoverNodeOne != children.get(index)){
+                        index++;
+                    }
+                    
+                    ((IEvaluationNonTerminal) parentOne).setChild(index, (IEvaluationNode) crossoverNodeTwo);
+                    crossoverNodeTwo.setParent(parentOne);
+                }    
             }
             
-            if(parentTwo == null){
+            if(parentTwoCopy == null){
                 two.setRoot((IMoveNode) crossoverNodeOne);
                 crossoverNodeOne.setParent(null);
             } else {
-                
+                if(parentTwo instanceof ConditionalNode){
+                    
+                    List<INode> children = ((ConditionalNode) parentTwo).getChildren();
+                    int index = 0;
+                    while(crossoverNodeTwo != children.get(index)){
+                        index++;
+                    }
+                    
+                    ((ConditionalNode) parentTwo).setChild(index, crossoverNodeOne);
+                    crossoverNodeOne.setParent(parentTwo);
+                } else {
+                    List<IEvaluationNode> children = ((IEvaluationNonTerminal) parentTwo).getChildren();
+                    int index = 0;
+                    while(crossoverNodeTwo != children.get(index)){
+                        index++;
+                    }
+                    
+                    ((IEvaluationNonTerminal) parentTwo).setChild(index, (IEvaluationNode) crossoverNodeOne);
+                    crossoverNodeOne.setParent(parentTwo);
+                }    
             }
         }
     }

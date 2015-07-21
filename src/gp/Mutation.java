@@ -34,8 +34,7 @@ public class Mutation {
                if(parent != null){
                    if(parent instanceof IEvaluationNode){
                        if(parent instanceof NotNode){
-                          ((NotNode) parent).setChild(NodeBuilder.getEvaluationNode(parent));
-                          System.out.println("NotNode\n");
+                          ((NotNode) parent).setChild(0, NodeBuilder.getEvaluationNode(parent));
                        } else if(parent instanceof AndNode){
                            List<IEvaluationNode> parentChildren = ((AndNode) parent).getChildren();
                            int index = 0;
@@ -44,7 +43,6 @@ public class Mutation {
                            }
                            
                            ((AndNode) parent).setChild(index, NodeBuilder.getEvaluationNode(parent));
-                           System.out.println(index+1  + ". AndNode\n");
                        } else {
                            List<IEvaluationNode> parentChildren = ((OrNode) parent).getChildren();
                            int index = 0;
@@ -53,9 +51,9 @@ public class Mutation {
                            }
                            
                            ((OrNode) parent).setChild(index, NodeBuilder.getEvaluationNode(parent));
-                           System.out.println(index+1 + ". OrNode\n");
                        }
                    }
+                   
                    if(parent instanceof ConditionalNode){
                        List<INode> parentChildren = ((ConditionalNode) parent).getChildren();
                        int index = 0;
@@ -72,13 +70,13 @@ public class Mutation {
                        }
                        
                        ((ConditionalNode) parent).setChild(index, newChild);
-                       System.out.println(index+1  + ". ConditionalNode\n");
                    }
                } else {
                    // selected node is root -> mutation on root
                    agent.setRoot(NodeBuilder.getMoveNode(null));
-                   System.out.println("Root\n");
                }
+               
+               mutationNode.setParent(null);
             }
         }
     }

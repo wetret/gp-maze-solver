@@ -15,21 +15,9 @@ public class EvolvedAgentFunctionExample implements IMoveNode{
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
         
-        if(pMaze.isWallWest() && pMaze.isWallNorth()){
-            return Move.EAST;
-        } else if(pMaze.isWallWest()) {
-            return Move.NORTH;
-        } else if(pMaze.isWallNorth() && pMaze.isWallEast()) {
-            return Move.SOUTH;
-        } else if(!pMaze.isWallWest() && !pMaze.isWallNorth() && pMaze.isWallNorthWest()) {
-            return Move.NORTH;
-        } else if(pMaze.isWallEast()) {
-            return Move.SOUTH;
-        } else {
-            return Move.EAST;
-        }
-        
-        // return null;
+        if ( ( !( pMaze.isWallNorthWest() ) || !( !( pMaze.isWallNorthEast() ) ) ) ) { if ( !( pMaze.isWallEast() ) ) { return Move.EAST; } else { return Move.SOUTH; } } else { return Move.NORTH; }
+
+       // return null;
     }
 
     @Override
@@ -55,6 +43,12 @@ public class EvolvedAgentFunctionExample implements IMoveNode{
     @Override
     public void setParent(INode pParent) {
        // leave as is  
+    }
+
+    @Override
+    public INode getCopy() {
+        // leave as is
+        return null;
     }
 
 }

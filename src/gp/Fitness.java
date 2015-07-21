@@ -17,9 +17,13 @@ public class Fitness {
             int fitness = xGoalDist + yGoalDist;
             
             agent.setFitness(fitness);
+            
+            agent.setAgentXCord(Config.DEFAULT.getAgentXCordStart());
+            agent.setAgentYCord(Config.DEFAULT.getAgentYCordStart());
+            agent.getMaze().setNewAgentCord(Config.DEFAULT.getAgentXCordStart(), Config.DEFAULT.getAgentYCordStart());
         }
         
-//        Collections.sort(pPopulation, new AgentComparator());
+        Collections.sort(pPopulation, new AgentComparator());
     }
 
 }

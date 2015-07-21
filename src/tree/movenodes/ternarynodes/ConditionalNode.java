@@ -19,8 +19,18 @@ public class ConditionalNode implements IMoveNode{
     
     public ConditionalNode(INode pParent) {
         mMoveChildren = new ArrayList<IMoveNode>(2);
-        setParent(null);
+        setParent(pParent);
         setChildren();
+    }
+    
+    private ConditionalNode(ConditionalNode pToCopy){
+        List<INode> children = pToCopy.getChildren();
+        mEvaluationChild = (IEvaluationNode) children.get(2);
+        
+        mMoveChildren = new ArrayList<IMoveNode>(2);
+        mMoveChildren.add((IMoveNode) children.get(0));
+        mMoveChildren.add((IMoveNode) children.get(1));
+        mParent = pToCopy.getParent();
     }
 
     @Override
@@ -98,6 +108,11 @@ public class ConditionalNode implements IMoveNode{
                 
             }
         }
+    }
+
+    @Override
+    public INode getCopy() {
+        return new ConditionalNode(this);
     }
     
 }

@@ -43,5 +43,10 @@ public class EastNode implements IEvaluationNode {
     public void setParent(INode pParent) {
         mParent = pParent;
     }
+
+    @Override
+    public INode getCopy() {
+        return new EastNode(mParent);
+    }
     
 }
