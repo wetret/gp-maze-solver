@@ -12,9 +12,9 @@ public class Fitness {
     
     public static void calculate(List<Agent> pPopulation) {
         for(Agent agent : pPopulation){
-            int xGoalDist = Math.abs(Config.DEFAULT.getGoalCordX() - agent.getXCord());
-            int yGoalDist = Math.abs(Config.DEFAULT.getGoalCordY() - agent.getYCord());
-            int fitness = xGoalDist + yGoalDist;
+            int xGoalDist = Config.DEFAULT.getGoalCordX() - agent.getXCord();
+            int yGoalDist = Config.DEFAULT.getGoalCordY() - agent.getYCord();
+            int fitness = xGoalDist*xGoalDist + yGoalDist*yGoalDist;
             
             agent.setFitness(fitness);
             

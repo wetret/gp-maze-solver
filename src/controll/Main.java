@@ -13,13 +13,16 @@ import utils.Config;
 
 public class Main {
     
-    public static void main(String args[]){ 
-//        withWindow();
-        geneticProgramming();
+    public static void main(String args[]){
+        if(args[0].equals("show")){  
+            withWindow();
+        } else if(args[0].equals("evolve")) {
+            geneticProgramming(Integer.parseInt(args[1]));
+        }
     }
     
-    private static void geneticProgramming() {
-       Agent best = new GeneticProgramming(250).evolve();
+    private static void geneticProgramming(int pPopulationSize) {
+       Agent best = new GeneticProgramming(pPopulationSize).evolve();
        System.out.println("\n" + best.getFitness() + " " + best.getEvaluationTree().evaluationToString());
     }
     
@@ -30,7 +33,6 @@ public class Main {
         top.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         top.setResizable(true);
         
-//      IMoveNode root = new TreeBuilder().build();
         IMoveNode root = new EvolvedAgentFunctionExample();
         
         Maze maze = new Maze();

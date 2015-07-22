@@ -2,7 +2,7 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 0, 1, 40, 1, 100, 0.1);
+    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 0, 1, 40, 1, 500, 0.1);
    
 
     private int mGridWidth;
@@ -25,7 +25,8 @@ public enum Config {
     private double mMutationPercentage;
 
     Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, 
+            int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
