@@ -5,7 +5,7 @@ import gp.GeneticProgramming;
 import javax.swing.JFrame;
 
 import population.Agent;
-import population.evolvedagentfunctions.EvolvedAgentFunctionExample;
+import population.evolvedagentfunctions.EvolvedAgentFunctionOne;
 import maze.Maze;
 import tree.IMoveNode;
 import utils.Config;
@@ -18,6 +18,8 @@ public class Main {
             withWindow();
         } else if(args[0].equals("evolve")) {
             geneticProgramming(Integer.parseInt(args[1]));
+        } else {
+            System.out.println("Wrong input arguments");
         }
     }
     
@@ -33,7 +35,7 @@ public class Main {
         top.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         top.setResizable(true);
         
-        IMoveNode root = new EvolvedAgentFunctionExample();
+        IMoveNode root = new EvolvedAgentFunctionOne();
         
         Maze maze = new Maze();
         Agent agent = new Agent(root, maze);
@@ -43,7 +45,7 @@ public class Main {
         top.setVisible(true);
         
         boolean notReachedGoal = true;
-        
+        int counter = 0;
         while(notReachedGoal){
             notReachedGoal = agent.move();
                 
@@ -52,8 +54,10 @@ public class Main {
             } catch (InterruptedException pEx) {
                 pEx.printStackTrace();
             }
-               
+            
+            counter++;
             top.repaint();
         }
+        System.out.println("Number of steps needed: " + counter);
     }
 }
