@@ -2,7 +2,7 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(25, 25, 7, 100, 100, 1, 2, 0, 1, 2, 3, 24, 22, 100, 1);
+    DEFAULT(21, 21, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 0, 1, 20, 1, 100, 0.1);
    
 
     private int mGridWidth;
@@ -16,13 +16,16 @@ public enum Config {
     private int mWallPosition;
     private int mAgentPosition;
     private int mGoalPosition;
+    private int mEntryPosition;
+    private int mEntryCordX;
+    private int mEntryCordY;
     private int mGoalCordX;
     private int mGoalCordY;
     private int mMaxMoves;
     private double mMutationPercentage;
 
     Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pGoalCordX, int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
@@ -34,6 +37,9 @@ public enum Config {
         mWallPosition = pWallPosition;
         mAgentPosition = pAgentPosition;
         mGoalPosition = pGoalPosition;
+        mEntryPosition = pEntryPosition;
+        mEntryCordX = pEntryCordX;
+        mEntryCordY = pEntryCordY;
         mGoalCordX = pGoalCordX;
         mGoalCordY = pGoalCordY;
         mMaxMoves = pMaxMoves;
@@ -98,6 +104,18 @@ public enum Config {
     
     public double getMutationPercentage(){
         return mMutationPercentage;
+    }
+    
+    public int getEntryPosition(){
+        return mEntryPosition;
+    }
+    
+    public int getEntryCordX(){
+        return mEntryCordX;
+    }
+    
+    public int getEntryCordY(){
+        return mEntryCordY;
     }
 
 }

@@ -18,8 +18,6 @@ public class Maze {
     
     private void init(){
         mGrid = MazeBuilder.build();
-        
-        mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getAgentPosition();
     }
     
     public boolean isWallEast(){

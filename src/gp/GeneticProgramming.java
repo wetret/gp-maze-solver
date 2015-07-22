@@ -21,7 +21,9 @@ public class GeneticProgramming {
         Fitness.calculate(mPopulation);
         
         while(mPopulation.get(0).getFitness() != 0) { 
-            System.out.println("Generation :" + generation);
+            if(generation % 1000 == 0){
+                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness() + " Best Function: " + mPopulation.get(0).getEvaluationTree().evaluationToString());
+            }
             
             Crossover.apply(mPopulation);
             Mutation.apply(mPopulation);

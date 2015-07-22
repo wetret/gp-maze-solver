@@ -19,7 +19,7 @@ public class Main {
     }
     
     private static void geneticProgramming() {
-       Agent best = new GeneticProgramming(100).evolve();
+       Agent best = new GeneticProgramming(500).evolve();
        System.out.println("\n" + best.getFitness() + " " + best.getEvaluationTree().evaluationToString());
     }
     

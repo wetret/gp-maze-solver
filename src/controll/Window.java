@@ -36,11 +36,13 @@ public class Window extends JPanel{
                     g.setColor(Color.BLUE);
                 } else if (cell == Config.DEFAULT.getGoalPosition()) {
                     g.setColor(Color.GREEN);
+                } else if (cell == Config.DEFAULT.getEntryPosition()) {
+                    g.setColor(Color.RED);
                 } else {
                     g.setColor(Color.YELLOW);
                 }
                 
-                if(i == 0 && j == 2){
+                if(i == Config.DEFAULT.getEntryCordX() && j == Config.DEFAULT.getEntryCordY()){
                     g.setColor(Color.RED);
                 }
                 
