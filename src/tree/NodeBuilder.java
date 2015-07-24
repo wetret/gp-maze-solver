@@ -43,30 +43,30 @@ public class NodeBuilder {
     }
     
     public static IEvaluationNode getEvaluationNode(INode pParent){
-        int selection = mRandom.nextInt(16);
+        int selection = mRandom.nextInt(11);
         
-        if(inBetween(selection, 0, 2)){
+        if(selection == 0){
            return new AndNode(pParent);
-        } else if(inBetween(selection, 3, 5)){
+        } else if(selection == 1){
            return new OrNode(pParent);
-        } else if(inBetween(selection, 6, 8)){
+        } else if(selection == 2){
             return new NotNode(pParent);
-        } else if(selection == 9){
+        } else if(selection == 3){
             return new EastNode(pParent);
-        } else if(selection == 10){
+        } else if(selection == 4){
             return new NorthEastNode(pParent);
-        } else if(selection == 11){
+        } else if(selection == 5){
             return new NorthNode(pParent);
-        } else if(selection == 12){
+        } else if(selection == 6){
             return new NorthWestNode(pParent);
-        } else if(selection == 13){
+        } else if(selection == 7){
             return new SouthEastNode(pParent);
-        } else if(selection == 14){
+        } else if(selection == 8){
             return new SouthNode(pParent);
-        } else if(selection == 15){
+        } else if(selection == 9){
             return new SouthWestNode(pParent);
         } else {
-            // selection should be 16
+            // selection should be 10
             return new WestNode(pParent);
         } 
     }

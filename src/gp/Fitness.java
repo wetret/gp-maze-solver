@@ -11,10 +11,16 @@ import utils.Config;
 public class Fitness {
     
     public static void calculate(List<Agent> pPopulation) {
+        absoluteDistance(pPopulation);
+        
+        Collections.sort(pPopulation, new AgentComparator());
+    }
+    
+    private static void absoluteDistance(List<Agent> pPopulation){
         for(Agent agent : pPopulation){
             int xGoalDist = Config.DEFAULT.getGoalCordX() - agent.getXCord();
             int yGoalDist = Config.DEFAULT.getGoalCordY() - agent.getYCord();
-            int fitness = xGoalDist*xGoalDist + yGoalDist*yGoalDist;
+            int fitness = Math.abs(xGoalDist) + Math.abs(yGoalDist);
             
             agent.setFitness(fitness);
             
@@ -22,8 +28,6 @@ public class Fitness {
             agent.setAgentYCord(Config.DEFAULT.getAgentYCordStart());
             agent.getMaze().setNewAgentCord(Config.DEFAULT.getAgentXCordStart(), Config.DEFAULT.getAgentYCordStart());
         }
-        
-        Collections.sort(pPopulation, new AgentComparator());
     }
 
 }
