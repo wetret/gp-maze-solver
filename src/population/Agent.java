@@ -28,7 +28,18 @@ public class Agent {
    }
    
 
-   public boolean move(){
+   public Agent(Agent pAgent) {
+       mRoot = (IMoveNode) pAgent.getEvaluationTree().getCopy();
+       mMaze = new Maze();
+       
+       mAgentXCord = Config.DEFAULT.getAgentXCordStart();
+       mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+       
+       mFitness = 100000;
+   }
+
+
+public boolean move(){
        Move move = mRoot.evaluate(mMaze);
        
        switch(move){
@@ -105,6 +116,10 @@ public class Agent {
 
    public void setAgentYCord(int pAgentYCord) {
        mAgentYCord = pAgentYCord;
+   }
+   
+   public Agent getCopy(){
+       return new Agent(this);
    }
 
 }

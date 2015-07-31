@@ -14,97 +14,60 @@ import utils.ERandom;
 
 public class Crossover {
 
-    public static void apply(List<Agent> pPopulation){
-       
-        for(int i = 0; i < pPopulation.size(); i = i + 2){
-            Random rand = ERandom.INSTANCE.getRandom();
-            
-            Agent one = pPopulation.get(i);
-            Agent two = pPopulation.get(i+1);
-            
-            List<INode> flattenedTreeOne = one.getEvaluationTree().getFlattenedTree();
-            List<INode> flattenedTreeTwo = two.getEvaluationTree().getFlattenedTree();
-            
+    public static Agent apply(Agent one, Agent two) {
+
+        Random rand = ERandom.INSTANCE.getRandom();
+
+        List<INode> flattenedTreeOne = one.getEvaluationTree().getFlattenedTree();
+        List<INode> flattenedTreeTwo = two.getEvaluationTree().getFlattenedTree();
+
+        int size = flattenedTreeOne.size();
+
+        INode crossoverNodeOne = null;
+        INode crossoverNodeTwo = null;
+        int randOne;
+        int randTwo;
+
+        if (size != 1) {
             boolean notSame = true;
-            
-            INode crossoverNodeOne = null;
-            INode crossoverNodeTwo = null;
-            
             while(notSame){  
-                int randOne = rand.nextInt(flattenedTreeOne.size());
+                randOne = rand.nextInt(flattenedTreeOne.size());
                 crossoverNodeOne = flattenedTreeOne.get(randOne);
                 
-                int randTwo = rand.nextInt(flattenedTreeTwo.size());
+                randTwo = rand.nextInt(flattenedTreeTwo.size());
                 crossoverNodeTwo = flattenedTreeTwo.get(randTwo);
                 
-                if(crossoverNodeOne instanceof IMoveNode && crossoverNodeTwo instanceof IMoveNode){
+                if(crossoverNodeOne instanceof ConditionalNode){
                     notSame = false;
                 }
                 
-                if(crossoverNodeOne instanceof IEvaluationNode && crossoverNodeTwo instanceof IEvaluationNode){
+                if(crossoverNodeOne instanceof IEvaluationNonTerminal && crossoverNodeTwo instanceof IEvaluationNode){
                     notSame = false;
                 }
             }
             
-            INode parentOne = crossoverNodeOne.getParent();
-            INode parentTwo = crossoverNodeTwo.getParent();
-            INode parentTwoCopy = null;
-            
-            if(parentTwo != null){    
-                parentTwoCopy = parentTwo.getCopy();
-            }
-            
-            if(parentOne == null){
-                one.setRoot((IMoveNode) crossoverNodeTwo);
-                crossoverNodeTwo.setParent(null);
-            } else {
-                if(parentOne instanceof ConditionalNode){
-                    
-                    List<INode> children = ((ConditionalNode) parentOne).getChildren();
-                    int index = 0;
-                    while(crossoverNodeOne != children.get(index)){
-                        index++;
-                    }
-                    
-                    ((ConditionalNode) parentOne).setChild(index, crossoverNodeTwo);
-                    crossoverNodeTwo.setParent(parentOne);
+            if(crossoverNodeOne instanceof ConditionalNode){
+                if(crossoverNodeTwo instanceof IMoveNode){
+                    int position = rand.nextInt(2);
+                    ((ConditionalNode) crossoverNodeOne).setChild(position, crossoverNodeTwo);
                 } else {
-                    List<IEvaluationNode> children = ((IEvaluationNonTerminal) parentOne).getChildren();
-                    int index = 0;
-                    while(crossoverNodeOne != children.get(index)){
-                        index++;
-                    }
-                    
-                    ((IEvaluationNonTerminal) parentOne).setChild(index, (IEvaluationNode) crossoverNodeTwo);
-                    crossoverNodeTwo.setParent(parentOne);
-                }    
-            }
-            
-            if(parentTwoCopy == null){
-                two.setRoot((IMoveNode) crossoverNodeOne);
-                crossoverNodeOne.setParent(null);
+                    ((ConditionalNode) crossoverNodeOne).setChild(3, crossoverNodeTwo);
+                }
             } else {
-                if(parentTwo instanceof ConditionalNode){
-                    
-                    List<INode> children = ((ConditionalNode) parentTwo).getChildren();
-                    int index = 0;
-                    while(crossoverNodeTwo != children.get(index)){
-                        index++;
-                    }
-                    
-                    ((ConditionalNode) parentTwo).setChild(index, crossoverNodeOne);
-                    crossoverNodeOne.setParent(parentTwo);
-                } else {
-                    List<IEvaluationNode> children = ((IEvaluationNonTerminal) parentTwo).getChildren();
-                    int index = 0;
-                    while(crossoverNodeTwo != children.get(index)){
-                        index++;
-                    }
-                    
-                    ((IEvaluationNonTerminal) parentTwo).setChild(index, (IEvaluationNode) crossoverNodeOne);
-                    crossoverNodeOne.setParent(parentTwo);
-                }    
+                int position = rand.nextInt(((IEvaluationNonTerminal) crossoverNodeOne).getChildren().size());
+                ((IEvaluationNonTerminal) crossoverNodeOne).setChild(position, (IEvaluationNode) crossoverNodeTwo);
             }
+           
+        } else {
+            while (!(crossoverNodeTwo instanceof IMoveNode)) {
+                randTwo = rand.nextInt(flattenedTreeTwo.size());
+                crossoverNodeTwo = flattenedTreeTwo.get(randTwo);
+
+            }
+
+            one.setRoot((IMoveNode) crossoverNodeTwo);
         }
+
+        return one;
     }
 }

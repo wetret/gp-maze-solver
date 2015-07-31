@@ -30,17 +30,7 @@ public class EvolvedAgentFunctionExample implements IMoveNode{
         return null;
     }
 
-    @Override
-    public INode getParent() {
-        // leave as is
-        return null;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-       // leave as is  
-    }
-
+   
     @Override
     public INode getCopy() {
         // leave as is

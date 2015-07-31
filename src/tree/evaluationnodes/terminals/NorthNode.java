@@ -10,10 +10,8 @@ import maze.Maze;
 
 public class NorthNode implements IEvaluationNode {
 
-    private INode mParent;
     
-    public NorthNode(INode pParent) {
-        setParent(pParent);
+    public NorthNode() {
     }
 
     @Override
@@ -35,18 +33,8 @@ public class NorthNode implements IEvaluationNode {
     }
 
     @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
-    }
-
-    @Override
     public INode getCopy() {
-        return new NorthNode(mParent);
+        return new NorthNode();
     }
 
 }

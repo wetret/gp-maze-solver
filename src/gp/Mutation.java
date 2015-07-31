@@ -5,10 +5,10 @@ import java.util.Random;
 
 import population.Agent;
 import tree.IEvaluationNode;
+import tree.IEvaluationNonTerminal;
+import tree.IMoveNode;
 import tree.INode;
 import tree.NodeBuilder;
-import tree.evaluationnodes.binarynodes.AndNode;
-import tree.evaluationnodes.binarynodes.OrNode;
 import tree.evaluationnodes.unarynodes.NotNode;
 import tree.movenodes.ternarynodes.ConditionalNode;
 import utils.Config;
@@ -26,57 +26,45 @@ public class Mutation {
             if(randomDouble < mutationPercentage){
                List<INode> flattenedTree =  agent.getEvaluationTree().getFlattenedTree();
                int size = flattenedTree.size();
+               
                int mutationPoint = rand.nextInt(size);
+               boolean noNodeWithChildren = true;
                
-               INode mutationNode = flattenedTree.get(mutationPoint);
-               INode parent = mutationNode.getParent();
-               
-               if(parent != null){
-                   if(parent instanceof IEvaluationNode){
-                       if(parent instanceof NotNode){
-                          ((NotNode) parent).setChild(0, NodeBuilder.getEvaluationNode(parent));
-                       } else if(parent instanceof AndNode){
-                           List<IEvaluationNode> parentChildren = ((AndNode) parent).getChildren();
-                           int index = 0;
-                           while(mutationNode != parentChildren.get(index)){
-                               index++;
-                           }
-                           
-                           ((AndNode) parent).setChild(index, NodeBuilder.getEvaluationNode(parent));
-                       } else {
-                           List<IEvaluationNode> parentChildren = ((OrNode) parent).getChildren();
-                           int index = 0;
-                           while(mutationNode != parentChildren.get(index)){
-                               index++;
-                           }
-                           
-                           ((OrNode) parent).setChild(index, NodeBuilder.getEvaluationNode(parent));
-                       }
-                   }
-                   
-                   if(parent instanceof ConditionalNode){
-                       List<INode> parentChildren = ((ConditionalNode) parent).getChildren();
-                       int index = 0;
-                       while(mutationNode != parentChildren.get(index)){
-                           index++;
-                       }
-                       
-                       INode replaceChild = parentChildren.get(index);
-                       INode newChild;
-                       if(replaceChild instanceof IEvaluationNode){
-                           newChild = NodeBuilder.getEvaluationNode(parent);
-                       } else {
-                           newChild = NodeBuilder.getMoveNode(parent);
-                       }
-                       
-                       ((ConditionalNode) parent).setChild(index, newChild);
-                   }
-               } else {
-                   // selected node is root -> mutation on root
-                   agent.setRoot(NodeBuilder.getMoveNode(null));
+               while(noNodeWithChildren){
+                  if((flattenedTree.get(mutationPoint) instanceof ConditionalNode) || 
+                     (flattenedTree.get(mutationPoint) instanceof IEvaluationNonTerminal) || size == 1) {
+                      noNodeWithChildren = false;
+                  } else {
+                      mutationPoint = rand.nextInt(size);
+                  }   
                }
                
-               mutationNode.setParent(null);
+               INode mutationNode = flattenedTree.get(mutationPoint);
+               
+               if(size == 1){
+                   agent.setRoot(NodeBuilder.getMoveNode());
+               } else if(mutationNode instanceof ConditionalNode){
+                   int childMutationPoint = rand.nextInt(3);
+                   List<INode> children = ((ConditionalNode) mutationNode).getChildren();
+                   
+                   if(children.get(childMutationPoint) instanceof IMoveNode){  
+                       IMoveNode newChild = NodeBuilder.getMoveNode();
+                       ((ConditionalNode) mutationNode).setChild(childMutationPoint, newChild);
+                   } else {
+                       IEvaluationNode newChild = NodeBuilder.getEvaluationNode();
+                       ((ConditionalNode) mutationNode).setChild(childMutationPoint, newChild);
+                   }
+               } else if(mutationNode instanceof IEvaluationNonTerminal){
+                   if (mutationNode instanceof NotNode){
+                       ((NotNode) mutationNode).setChild(0, NodeBuilder.getEvaluationNode());
+                   } else {
+                       int childMutationPoint = rand.nextInt(2);
+                       ((IEvaluationNonTerminal) mutationNode).setChild(childMutationPoint, NodeBuilder.getEvaluationNode());
+                   }
+               } else {
+                   // selected node is terminal and has no children -> should not happen
+               }
+               
             }
         }
     }

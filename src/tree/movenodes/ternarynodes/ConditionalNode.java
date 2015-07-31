@@ -15,22 +15,19 @@ public class ConditionalNode implements IMoveNode{
     
     private IEvaluationNode mEvaluationChild;
     private List<IMoveNode> mMoveChildren;
-    private INode mParent;
     
-    public ConditionalNode(INode pParent) {
+    public ConditionalNode() {
         mMoveChildren = new ArrayList<IMoveNode>(2);
-        setParent(pParent);
         setChildren();
     }
     
     private ConditionalNode(ConditionalNode pToCopy){
         List<INode> children = pToCopy.getChildren();
-        mEvaluationChild = (IEvaluationNode) children.get(2);
+        mEvaluationChild = (IEvaluationNode) children.get(2).getCopy();
         
         mMoveChildren = new ArrayList<IMoveNode>(2);
-        mMoveChildren.add((IMoveNode) children.get(0));
-        mMoveChildren.add((IMoveNode) children.get(1));
-        mParent = pToCopy.getParent();
+        mMoveChildren.add((IMoveNode) children.get(0).getCopy());
+        mMoveChildren.add((IMoveNode) children.get(1).getCopy());
     }
 
     @Override
@@ -61,10 +58,10 @@ public class ConditionalNode implements IMoveNode{
     
     private void setChildren() {
         for(int i = 0; i < 2; i++){
-            mMoveChildren.add(NodeBuilder.getMoveNode(this));
+            mMoveChildren.add(NodeBuilder.getMoveNode());
         }
         
-        mEvaluationChild = NodeBuilder.getEvaluationNode(this);
+        mEvaluationChild = NodeBuilder.getEvaluationNode();
     }
 
     @Override
@@ -81,16 +78,6 @@ public class ConditionalNode implements IMoveNode{
         return nodes;
     }
 
-    @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
-    }
-    
     public List<INode> getChildren(){
         List<INode> children = new ArrayList<INode>();
         children.addAll(mMoveChildren);

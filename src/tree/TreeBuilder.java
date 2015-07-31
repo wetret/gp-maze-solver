@@ -6,7 +6,7 @@ public class TreeBuilder {
     public TreeBuilder(){}
     
     public IMoveNode build(){
-        return NodeBuilder.getMoveNode(null);
+        return NodeBuilder.getMoveNode();
     }
        
 }

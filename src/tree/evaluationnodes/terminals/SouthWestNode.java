@@ -10,10 +10,8 @@ import maze.Maze;
 
 public class SouthWestNode implements IEvaluationNode {
     
-    private INode mParent;
     
-    public SouthWestNode(INode pParent) {
-        setParent(pParent);
+    public SouthWestNode() {
     }
 
     @Override
@@ -35,18 +33,8 @@ public class SouthWestNode implements IEvaluationNode {
     }
 
     @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
-    }
-
-    @Override
     public INode getCopy() {
-       return new SouthWestNode(mParent);
+       return new SouthWestNode();
     }
 
 }

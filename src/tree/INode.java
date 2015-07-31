@@ -8,8 +8,5 @@ public interface INode {
     public String evaluationToString();
     public List<INode> getFlattenedTree();
     
-    public INode getParent();
-    public void setParent(INode pParent);
-    
     public INode getCopy();
 }

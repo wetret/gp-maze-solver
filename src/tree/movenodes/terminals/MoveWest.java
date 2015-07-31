@@ -11,10 +11,7 @@ import maze.Maze;
 
 public class MoveWest implements IMoveNode{
     
-    private INode mParent;
-    
-    public MoveWest(INode pParent){
-        setParent(pParent);
+    public MoveWest(){
     }
 
     @Override
@@ -36,18 +33,8 @@ public class MoveWest implements IMoveNode{
     }
 
     @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
-    }
-
-    @Override
     public INode getCopy() {
-        return new MoveWest(mParent);
+        return new MoveWest();
     }
 
 }

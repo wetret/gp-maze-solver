@@ -14,18 +14,17 @@ public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
     
 
     private List<IEvaluationNode> mChildren;
-    private INode mParent;
     
-    public AndNode(INode pParent) {
+    public AndNode() {
         mChildren = new ArrayList<IEvaluationNode>(2);
-        setParent(pParent);
         setChildren();
     }
     
     // Copy constructor
     private AndNode(AndNode pToCopy){
-        mChildren = pToCopy.getChildren();
-        mParent = pToCopy.getParent();
+        mChildren = new ArrayList<IEvaluationNode>(2);
+        mChildren.add((IEvaluationNode) pToCopy.getChildren().get(0).getCopy());
+        mChildren.add((IEvaluationNode) pToCopy.getChildren().get(1).getCopy());
     }
 
     @Override
@@ -40,7 +39,7 @@ public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
     
     private void setChildren() {
         for (int i = 0; i < 2; i++){
-            mChildren.add(NodeBuilder.getEvaluationNode(this));
+            mChildren.add(NodeBuilder.getEvaluationNode());
         }
     }
     
@@ -54,16 +53,6 @@ public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
         }
         
         return nodes;
-    }
-
-    @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
     }
 
     @Override

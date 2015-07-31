@@ -25,49 +25,49 @@ public class NodeBuilder {
     
     private static final Random mRandom = ERandom.INSTANCE.getRandom(); 
     
-    public static IMoveNode getMoveNode(INode pParent){
+    public static IMoveNode getMoveNode(){
         int selection = mRandom.nextInt(7);
         
         if(inBetween(selection, 0, 2)){
-            return new ConditionalNode(pParent);
+            return new ConditionalNode();
         } else if(selection == 3){
-            return new MoveNorth(pParent);
+            return new MoveNorth();
         } else if(selection == 4){
-            return new MoveEast(pParent);
+            return new MoveEast();
         } else if(selection == 5){
-            return new MoveSouth(pParent);
+            return new MoveSouth();
         } else {
             // selection should be 6
-            return new MoveWest(pParent);
+            return new MoveWest();
         }
     }
     
-    public static IEvaluationNode getEvaluationNode(INode pParent){
+    public static IEvaluationNode getEvaluationNode(){
         int selection = mRandom.nextInt(11);
         
         if(selection == 0){
-           return new AndNode(pParent);
+           return new AndNode();
         } else if(selection == 1){
-           return new OrNode(pParent);
+           return new OrNode();
         } else if(selection == 2){
-            return new NotNode(pParent);
+            return new NotNode();
         } else if(selection == 3){
-            return new EastNode(pParent);
+            return new EastNode();
         } else if(selection == 4){
-            return new NorthEastNode(pParent);
+            return new NorthEastNode();
         } else if(selection == 5){
-            return new NorthNode(pParent);
+            return new NorthNode();
         } else if(selection == 6){
-            return new NorthWestNode(pParent);
+            return new NorthWestNode();
         } else if(selection == 7){
-            return new SouthEastNode(pParent);
+            return new SouthEastNode();
         } else if(selection == 8){
-            return new SouthNode(pParent);
+            return new SouthNode();
         } else if(selection == 9){
-            return new SouthWestNode(pParent);
+            return new SouthWestNode();
         } else {
             // selection should be 10
-            return new WestNode(pParent);
+            return new WestNode();
         } 
     }
     

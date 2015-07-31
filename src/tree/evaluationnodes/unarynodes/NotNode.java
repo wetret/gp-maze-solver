@@ -14,22 +14,20 @@ public class NotNode implements IEvaluationNode, IEvaluationNonTerminal{
     
 
     private List<IEvaluationNode> mChildren;
-    private INode mParent;
-    
-    public NotNode(INode pParent) {
+ 
+    public NotNode() {
         mChildren = new ArrayList<IEvaluationNode>(1);
-        setParent(pParent);
         setChildren();
     }
     
     // Copy constructor
     private NotNode(NotNode pToCopy){
-        mChildren = pToCopy.getChildren();
-        mParent = pToCopy.getParent();
+        mChildren = new ArrayList<IEvaluationNode>(1);
+        mChildren.add((IEvaluationNode) pToCopy.getChildren().get(0).getCopy());
     }
     
     private void setChildren() {
-        mChildren.add(NodeBuilder.getEvaluationNode(this));
+        mChildren.add(NodeBuilder.getEvaluationNode());
     }
 
     @Override
@@ -50,16 +48,6 @@ public class NotNode implements IEvaluationNode, IEvaluationNonTerminal{
         nodes.addAll(mChildren.get(0).getFlattenedTree());
         
         return nodes;
-    }
-
-    @Override
-    public INode getParent() {
-        return mParent;
-    }
-
-    @Override
-    public void setParent(INode pParent) {
-        mParent = pParent;
     }
 
     @Override
