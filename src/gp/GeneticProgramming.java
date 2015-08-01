@@ -1,7 +1,6 @@
 package gp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -48,10 +47,6 @@ public class GeneticProgramming {
             
             generation++;
         }
-        
-//        print(0);
-//        Crossover.apply(mPopulation.get(0), mPopulation.get(1));
-//        System.out.println("CROSSOVER: " + mPopulation.get(0).getEvaluationTree().evaluationToString());
         
         // Return the best Agent
         return mPopulation.get(0);

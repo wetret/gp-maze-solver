@@ -2,7 +2,12 @@ package utils;
 
 
 public enum Config {
-    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 0, 2, 40, 1, 400, 0.25);
+    
+    // for maze 1 - 5
+    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 0, 2, 40, 1, 450, 0.25);
+    
+    // for maze 6
+    // DEFAULT(11, 11, 10, 100, 100, 1, 1, 0, 1, 2, 3, 4, 0, 1, 10, 9, 250, 0.25);
    
 
     private int mGridWidth;

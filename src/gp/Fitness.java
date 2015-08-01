@@ -24,9 +24,13 @@ public class Fitness {
             
             agent.setFitness(fitness);
             
-            agent.setAgentXCord(Config.DEFAULT.getAgentXCordStart());
-            agent.setAgentYCord(Config.DEFAULT.getAgentYCordStart());
-            agent.getMaze().setNewAgentCord(Config.DEFAULT.getAgentXCordStart(), Config.DEFAULT.getAgentYCordStart());
+            agent.resetTestRun();
+        }
+    }
+    
+    private static void shortestPath(List<Agent> pPopulation){
+        for(Agent agent : pPopulation){
+            
         }
     }
 

@@ -16,6 +16,8 @@ public class Agent {
     private int mAgentYCord;
     
     private int mFitness;
+    private boolean mGoalReached;
+    private int mCollectedWayPoints;
     
    public Agent(IMoveNode pRoot, Maze pMaze) {
         mRoot = pRoot;
@@ -25,6 +27,8 @@ public class Agent {
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
         
         mFitness = 100000;
+        mGoalReached = false;
+        mCollectedWayPoints = 0;
    }
    
 
@@ -120,6 +124,15 @@ public boolean move(){
    
    public Agent getCopy(){
        return new Agent(this);
+   }
+   
+   public void resetTestRun(){
+       mAgentXCord = Config.DEFAULT.getAgentXCordStart();
+       mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+       mMaze.setNewAgentCord(Config.DEFAULT.getAgentXCordStart(), Config.DEFAULT.getAgentYCordStart());
+       
+       mGoalReached = false;
+       mCollectedWayPoints = 0;
    }
 
 }
