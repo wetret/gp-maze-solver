@@ -25,7 +25,8 @@ public class GeneticProgramming {
         TestRun.apply(mPopulation);
         Fitness.calculate(mPopulation);
         
-        while(mPopulation.get(0).getFitness() != 0) { 
+//        while(mPopulation.get(0).getFitness() != 0) { 
+        while(mPopulation.get(0).getFitness() < 500) { 
             if(generation % 100 == 0){
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness() /**/+ " " +  mPopulation.get(0).getEvaluationTree().evaluationToString()/**/);
             }

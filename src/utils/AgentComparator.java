@@ -9,6 +9,6 @@ public class AgentComparator implements Comparator<Agent>{
 
     @Override
     public int compare(Agent one, Agent two) {
-        return one.getFitness() - two.getFitness();
+        return two.getFitness() - one.getFitness();
     }
 }

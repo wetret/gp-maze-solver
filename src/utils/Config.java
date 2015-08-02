@@ -4,7 +4,7 @@ package utils;
 public enum Config {
     
     // for maze 1 - 5
-    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 0, 2, 40, 1, 450, 0.25);
+    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 5, 0, 2, 40, 2, 450, 0.25);
     
     // for maze 6
     // DEFAULT(11, 11, 10, 100, 100, 1, 1, 0, 1, 2, 3, 4, 0, 1, 10, 9, 250, 0.25);
@@ -22,6 +22,7 @@ public enum Config {
     private int mAgentPosition;
     private int mGoalPosition;
     private int mEntryPosition;
+    private int mWayPointPosition;
     private int mEntryCordX;
     private int mEntryCordY;
     private int mGoalCordX;
@@ -30,7 +31,7 @@ public enum Config {
     private double mMutationPercentage;
 
     Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, 
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pWayPointPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, 
             int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
@@ -44,6 +45,7 @@ public enum Config {
         mAgentPosition = pAgentPosition;
         mGoalPosition = pGoalPosition;
         mEntryPosition = pEntryPosition;
+        mWayPointPosition = pWayPointPosition;
         mEntryCordX = pEntryCordX;
         mEntryCordY = pEntryCordY;
         mGoalCordX = pGoalCordX;
@@ -122,6 +124,14 @@ public enum Config {
     
     public int getEntryCordY(){
         return mEntryCordY;
+    }
+
+    public int getWayPointPosition() {
+        return mWayPointPosition;
+    }
+
+    public void setWayPointPosition(int pWayPointPosition) {
+        mWayPointPosition = pWayPointPosition;
     }
 
 }

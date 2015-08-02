@@ -95,4 +95,8 @@ public class Maze {
     public int[][] getGrid(){
         return mGrid;
     }
+    
+    public int getFiledValue(int pXCord, int pYCord){
+        return mGrid[pXCord][pYCord];
+    }
 }

@@ -38,8 +38,10 @@ public class Window extends JPanel{
                     g.setColor(Color.GREEN);
                 } else if (cell == Config.DEFAULT.getEntryPosition()) {
                     g.setColor(Color.RED);
-                } else {
+                } else if (cell == Config.DEFAULT.getWayPointPosition()) {
                     g.setColor(Color.YELLOW);
+                } else {
+                    g.setColor(Color.WHITE);
                 }
                 
                 if(i == Config.DEFAULT.getEntryCordX() && j == Config.DEFAULT.getEntryCordY()){
