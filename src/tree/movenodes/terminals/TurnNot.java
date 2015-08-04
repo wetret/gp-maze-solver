@@ -3,25 +3,21 @@ package tree.movenodes.terminals;
 import java.util.ArrayList;
 import java.util.List;
 
+import maze.Maze;
+import tree.EOrientation;
+import tree.ETurn;
 import tree.IMoveNode;
 import tree.INode;
-import tree.Move;
-import maze.Maze;
 
 
-public class MoveEast implements IMoveNode{
+public class TurnNot implements IMoveNode{
+
+    public TurnNot(){
+    }
     
-    public MoveEast() {
-    }
-
-    @Override
-    public Move evaluate(Maze pMaze) {
-        return Move.EAST;
-    }
-
     @Override
     public String evaluationToString() {
-        return "Move.EAST;";
+        return "ETurn.NOT;";
     }
 
     @Override
@@ -34,6 +30,12 @@ public class MoveEast implements IMoveNode{
 
     @Override
     public INode getCopy() {
-        return new MoveEast();
+        return new TurnNot();
     }
+
+    @Override
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        return ETurn.NOT;
+    }
+
 }

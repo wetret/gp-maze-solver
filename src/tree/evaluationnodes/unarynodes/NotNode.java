@@ -3,6 +3,7 @@ package tree.evaluationnodes.unarynodes;
 import java.util.ArrayList;
 import java.util.List;
 
+import tree.EOrientation;
 import tree.IEvaluationNode;
 import tree.IEvaluationNonTerminal;
 import tree.INode;
@@ -31,8 +32,8 @@ public class NotNode implements IEvaluationNode, IEvaluationNonTerminal{
     }
 
     @Override
-    public boolean evaluate(Maze pMaze) {
-        return !mChildren.get(0).evaluate(pMaze);
+    public boolean evaluate(Maze pMaze, EOrientation pOrientation) {
+        return !mChildren.get(0).evaluate(pMaze, pOrientation);
     }
 
     @Override

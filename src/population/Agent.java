@@ -1,8 +1,9 @@
 package population;
 
 import maze.Maze;
+import tree.ETurn;
 import tree.IMoveNode;
-import tree.Move;
+import tree.EOrientation;
 import utils.Config;
 
 
@@ -12,6 +13,7 @@ public class Agent {
 
     private Maze      mMaze;
 
+    private EOrientation mOrientation;
     private int       mAgentXCord;
     private int       mAgentYCord;
 
@@ -23,6 +25,7 @@ public class Agent {
         mRoot = pRoot;
         mMaze = pMaze;
 
+        mOrientation = EOrientation.EAST;
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
 
@@ -45,41 +48,48 @@ public class Agent {
 
 
     public boolean move() {
-        Move move = mRoot.evaluate(mMaze);
+        ETurn move = mRoot.evaluate(mMaze, mOrientation);
 
         switch (move) {
-            case NORTH:
-                if (!mMaze.isWallNorth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord-1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentYCord = mAgentYCord - 1;
+            case LEFT:
+                if(mOrientation == EOrientation.EAST){
+                    mOrientation = EOrientation.NORTH;
+                } else if(mOrientation == EOrientation.SOUTH){
+                    mOrientation = EOrientation.EAST;
+                } else if(mOrientation == EOrientation.WEST){
+                    mOrientation = EOrientation.SOUTH;
+                } else {
+                    // Orientation is NORTH
+                    mOrientation = EOrientation.WEST;
                 }
                 break;
-            case EAST:
-                if (!mMaze.isWallEast()) {
-                    if(mMaze.getGrid()[mAgentXCord+1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentXCord = mAgentXCord + 1;
+            case RIGHT:
+                if(mOrientation == EOrientation.EAST){
+                    mOrientation = EOrientation.SOUTH;
+                } else if(mOrientation == EOrientation.SOUTH){
+                    mOrientation = EOrientation.WEST;
+                } else if(mOrientation == EOrientation.WEST){
+                    mOrientation = EOrientation.NORTH;
+                } else {
+                    // Orientation is NORTH
+                    mOrientation = EOrientation.EAST;
                 }
                 break;
-            case SOUTH:
-                if (!mMaze.isWallSouth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord+1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentYCord = mAgentYCord + 1;
-                }
+            case NOT:
+                // No change in orientation
                 break;
-            case WEST:
-                if (!mMaze.isWallWest()) {
-                    if(mMaze.getGrid()[mAgentXCord-1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentXCord = mAgentXCord - 1;
-                }
-                break;
+        }
+        if(!mMaze.isWallAhead(mOrientation)){   
+            if(mOrientation == EOrientation.EAST){
+                mAgentXCord = mAgentXCord + 1;
+            } else if(mOrientation == EOrientation.SOUTH){
+                mAgentYCord = mAgentYCord + 1;
+            } else if(mOrientation == EOrientation.WEST){
+                mAgentXCord = mAgentXCord - 1;
+            } else {
+                // Orientation is NORTH
+                mAgentYCord = mAgentYCord - 1;
+            }
         }
 
         if (goalReached()) {

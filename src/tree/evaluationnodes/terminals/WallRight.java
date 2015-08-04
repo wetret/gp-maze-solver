@@ -3,27 +3,22 @@ package tree.evaluationnodes.terminals;
 import java.util.ArrayList;
 import java.util.List;
 
+import maze.Maze;
+import tree.EOrientation;
 import tree.IEvaluationNode;
 import tree.INode;
-import maze.Maze;
 
 
-public class NorthEastNode implements IEvaluationNode {
+public class WallRight implements IEvaluationNode{
+
+    public WallRight(){
+    }
     
-   
-    public NorthEastNode() {
-    }
-
-    @Override
-    public boolean evaluate(Maze pMaze) {
-        return pMaze.isWallNorthEast();
-    }
-
     @Override
     public String evaluationToString() {
-        return "pMaze.isWallNorthEast()";
+        return "pMaze.isWallRight(pOrientation)";
     }
-    
+
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
@@ -34,7 +29,12 @@ public class NorthEastNode implements IEvaluationNode {
 
     @Override
     public INode getCopy() {
-        return new NorthEastNode();
+        return new WallRight();
+    }
+
+    @Override
+    public boolean evaluate(Maze pMaze, EOrientation pOrientation) {
+        return pMaze.isWallRight(pOrientation);
     }
 
 }

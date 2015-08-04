@@ -3,15 +3,16 @@ package population.evolvedagentfunctions;
 import java.util.List;
 
 import maze.Maze;
+import tree.EOrientation;
+import tree.ETurn;
 import tree.IMoveNode;
 import tree.INode;
-import tree.Move;
 
 
 public class EvolvedAgentFunctionExample implements IMoveNode{
 
     @Override
-    public Move evaluate(Maze pMaze) {
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
         

@@ -1,5 +1,6 @@
 package maze;
 
+import tree.EOrientation;
 import utils.Config;
 
 
@@ -27,70 +28,130 @@ public class Maze {
         return mMazeNumber;
     }
 
-    public boolean isWallEast(){
-      if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
-          return true;
+    public boolean isWallAhead(EOrientation pOrientation){
+      boolean answer = false;
+        
+      if(pOrientation == EOrientation.EAST){
+          if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+             answer = true;
+          } 
+      } else if (pOrientation == EOrientation.SOUTH){
+          if(mGrid[mAgentCordX][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+              answer = true;
+           } 
+      } else if (pOrientation == EOrientation.WEST){
+          if(mGrid[mAgentCordX - 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+              answer = true;
+           } 
       } else {
-          return false;
+          // Orientation is NORTH
+          if(mGrid[mAgentCordX][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+              answer = true;
+           } 
       }
+        
+      return answer;
     }
     
-    public boolean isWallNorthEast(){
-        if(mGrid[mAgentCordX + 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
-            return true;
+    public boolean isWallLeft(EOrientation pOrientation){
+        boolean answer = false;
+        
+        if(pOrientation == EOrientation.EAST){
+            if(mGrid[mAgentCordX][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+               answer = true;
+            } 
+        } else if (pOrientation == EOrientation.SOUTH){
+            if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
+        } else if (pOrientation == EOrientation.WEST){
+            if(mGrid[mAgentCordX][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         } else {
-            return false;
+            // Orientation is NORTH
+            if(mGrid[mAgentCordX - 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         }
-    }
+          
+        return answer;
+      }
     
-    public boolean isWallNorth(){
-        if(mGrid[mAgentCordX][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
-            return true;
+    public boolean isWallLeftAhead(EOrientation pOrientation){
+        boolean answer = false;
+        
+        if(pOrientation == EOrientation.EAST){
+            if(mGrid[mAgentCordX + 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+               answer = true;
+            } 
+        } else if (pOrientation == EOrientation.SOUTH){
+            if(mGrid[mAgentCordX + 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
+        } else if (pOrientation == EOrientation.WEST){
+            if(mGrid[mAgentCordX - 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         } else {
-            return false;
+            // Orientation is NORTH
+            if(mGrid[mAgentCordX - 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         }
-    }
-
-    public boolean isWallNorthWest(){
-        if(mGrid[mAgentCordX - 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
-            return true;
-        } else {
-            return false;
-        }
-    }
+          
+        return answer;
+      }
     
-    public boolean isWallWest(){
-        if(mGrid[mAgentCordX - 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
-            return true;
+    public boolean isWallRight(EOrientation pOrientation){
+        boolean answer = false;
+        
+        if(pOrientation == EOrientation.EAST){
+            if(mGrid[mAgentCordX][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+               answer = true;
+            } 
+        } else if (pOrientation == EOrientation.SOUTH){
+            if(mGrid[mAgentCordX - 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
+        } else if (pOrientation == EOrientation.WEST){
+            if(mGrid[mAgentCordX][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         } else {
-            return false;
+            // Orientation is NORTH
+            if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         }
-    }
-
-
-    public boolean isWallSouthWest(){
-        if(mGrid[mAgentCordX - 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
-            return true;
+          
+        return answer;
+      }
+    
+    public boolean isWallRightAhead(EOrientation pOrientation){
+        boolean answer = false;
+        
+        if(pOrientation == EOrientation.EAST){
+            if(mGrid[mAgentCordX + 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+               answer = true;
+            } 
+        } else if (pOrientation == EOrientation.SOUTH){
+            if(mGrid[mAgentCordX - 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
+        } else if (pOrientation == EOrientation.WEST){
+            if(mGrid[mAgentCordX - 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         } else {
-            return false;
+            // Orientation is NORTH
+            if(mGrid[mAgentCordX + 1][mAgentCordY - 1] == Config.DEFAULT.getWallPosition()){
+                answer = true;
+             } 
         }
-    }
-
-    public boolean isWallSouth(){
-        if(mGrid[mAgentCordX][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isWallSouthEast(){
-        if(mGrid[mAgentCordX + 1][mAgentCordY + 1] == Config.DEFAULT.getWallPosition()){
-            return true;
-        } else {
-            return false;
-        }
-    }
+          
+        return answer;
+      }
     
     public void setNewAgentCord(int pNewXCord, int pNewYCord){
         mGrid[mAgentCordX][mAgentCordY] = Config.DEFAULT.getNotWallPosition();

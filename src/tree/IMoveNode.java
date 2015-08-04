@@ -5,5 +5,5 @@ import maze.Maze;
 
 public interface IMoveNode extends INode{
 
-    public Move evaluate(Maze pMaze);
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation);
 }

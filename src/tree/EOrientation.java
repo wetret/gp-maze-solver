@@ -1,6 +1,6 @@
 package tree;
 
 
-public enum Move {
+public enum EOrientation {
     NORTH, SOUTH, EAST, WEST;
 }

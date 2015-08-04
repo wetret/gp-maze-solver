@@ -3,10 +3,11 @@ package tree.movenodes.ternarynodes;
 import java.util.ArrayList;
 import java.util.List;
 
+import tree.EOrientation;
+import tree.ETurn;
 import tree.IEvaluationNode;
 import tree.IMoveNode;
 import tree.INode;
-import tree.Move;
 import tree.NodeBuilder;
 import maze.Maze;
 
@@ -31,11 +32,11 @@ public class ConditionalNode implements IMoveNode{
     }
 
     @Override
-    public Move evaluate(Maze pMaze) {
-        if (mEvaluationChild.evaluate(pMaze)) {
-            return mMoveChildren.get(0).evaluate(pMaze);
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        if (mEvaluationChild.evaluate(pMaze, pOrientation)) {
+            return mMoveChildren.get(0).evaluate(pMaze, pOrientation);
         } else {
-            return mMoveChildren.get(1).evaluate(pMaze);
+            return mMoveChildren.get(1).evaluate(pMaze, pOrientation);
         }
     }
 

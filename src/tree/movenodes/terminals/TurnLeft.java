@@ -1,26 +1,23 @@
-package tree.evaluationnodes.terminals;
+package tree.movenodes.terminals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tree.IEvaluationNode;
-import tree.INode;
 import maze.Maze;
+import tree.EOrientation;
+import tree.ETurn;
+import tree.IMoveNode;
+import tree.INode;
 
 
-public class EastNode implements IEvaluationNode {
+public class TurnLeft implements IMoveNode{
     
-    public EastNode() {
-    }
-
-    @Override
-    public boolean evaluate(Maze pMaze) {
-       return pMaze.isWallEast();
+    public TurnLeft(){
     }
 
     @Override
     public String evaluationToString() {
-        return "pMaze.isWallEast()";
+        return "ETurn.LEFT;";
     }
 
     @Override
@@ -33,7 +30,12 @@ public class EastNode implements IEvaluationNode {
 
     @Override
     public INode getCopy() {
-        return new EastNode();
+        return new TurnLeft();
     }
-    
+
+    @Override
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        return ETurn.LEFT;
+    }
+
 }

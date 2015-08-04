@@ -3,6 +3,7 @@ package tree.evaluationnodes.binarynodes;
 import java.util.ArrayList;
 import java.util.List;
 
+import tree.EOrientation;
 import tree.IEvaluationNode;
 import tree.IEvaluationNonTerminal;
 import tree.INode;
@@ -28,8 +29,8 @@ public class OrNode implements IEvaluationNode, IEvaluationNonTerminal{
     }
 
     @Override
-    public boolean evaluate(Maze pMaze) {
-        return mChildren.get(0).evaluate(pMaze) || mChildren.get(1).evaluate(pMaze);
+    public boolean evaluate(Maze pMaze, EOrientation pOrientation) {
+        return mChildren.get(0).evaluate(pMaze, pOrientation) || mChildren.get(1).evaluate(pMaze, pOrientation);
     }
 
     @Override
