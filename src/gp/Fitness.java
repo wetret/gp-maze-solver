@@ -10,9 +10,12 @@ import utils.Config;
 
 public class Fitness {
     
-    public static void calculate(List<Agent> pPopulation) {
-//        absoluteDistance(pPopulation);
-        shortestPath(pPopulation);
+    public static void calculate(List<Agent> pPopulation, int pFitnessFunction) {
+        if(pFitnessFunction == 1){
+            absoluteDistance(pPopulation);
+        } else if(pFitnessFunction == 2){            
+            shortestPath(pPopulation);
+        }
         
         Collections.sort(pPopulation, new AgentComparator());
     }

@@ -34,7 +34,8 @@ public class Agent {
 
     public Agent(Agent pAgent) {
         mRoot = (IMoveNode) pAgent.getEvaluationTree().getCopy();
-        mMaze = new Maze();
+        int mazeNumber = pAgent.getMaze().getMazeNumber();
+        mMaze = new Maze(mazeNumber);
 
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
@@ -143,7 +144,8 @@ public class Agent {
     public void resetValues() {
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
-        mMaze = new Maze();
+        int mazeNumber = mMaze.getMazeNumber();
+        mMaze = new Maze(mazeNumber);
         mGoalReached = false;
         mCollectedWayPoints = 0;
     }

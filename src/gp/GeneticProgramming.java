@@ -13,19 +13,21 @@ public class GeneticProgramming {
     
     private List<Agent> mPopulation;
     private Random rand;
+    private int mFitnessFunction;
     
-    public GeneticProgramming(int pPopulationSize) {
-        mPopulation = PopulationBuilder.build(pPopulationSize);
+    public GeneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
+        mPopulation = PopulationBuilder.build(pPopulationSize, pMazeNumber);
         rand = ERandom.INSTANCE.getRandom();
+        mFitnessFunction = pFitnessFunction;
     }
     
     public Agent evolve(){
         int generation = 0;
         
         TestRun.apply(mPopulation);
-        Fitness.calculate(mPopulation);
+        Fitness.calculate(mPopulation, mFitnessFunction);
         
-//        while(mPopulation.get(0).getFitness() != 0) { 
+//        while(mPopulation.get(0).getFitness() < 0) { 
         while(mPopulation.get(0).getFitness() < 500) { 
             if(generation % 100 == 0){
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness() /**/+ " " +  mPopulation.get(0).getEvaluationTree().evaluationToString()/**/);
@@ -44,7 +46,7 @@ public class GeneticProgramming {
             mPopulation = new ArrayList<Agent>(newPopulation);
             
             TestRun.apply(mPopulation);
-            Fitness.calculate(mPopulation);
+            Fitness.calculate(mPopulation, mFitnessFunction);
             
             generation++;
         }

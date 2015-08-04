@@ -15,20 +15,20 @@ public class Main {
     
     public static void main(String args[]){
         if(args[0].equals("show")){  
-            withWindow();
-        } else if(args[0].equals("evolve")) {
-            geneticProgramming(Integer.parseInt(args[1]));
+            withWindow(Integer.parseInt(args[1]));
+        } else if(args[0].equals("evolve") && args.length == 4) {
+            geneticProgramming(Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
         } else {
             System.out.println("Wrong input arguments");
         }
     }
     
-    private static void geneticProgramming(int pPopulationSize) {
-       Agent best = new GeneticProgramming(pPopulationSize).evolve();
+    private static void geneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
+       Agent best = new GeneticProgramming(pPopulationSize, pFitnessFunction, pMazeNumber).evolve();
        System.out.println("\n" + best.getFitness() + " " + best.getEvaluationTree().evaluationToString());
     }
     
-    private static void withWindow(){
+    private static void withWindow(int mMazeNumber){
         JFrame top = new JFrame("Maze");
         top.setBounds(Config.DEFAULT.getXCord(), Config.DEFAULT.getYCord(), Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridWidth(), Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridHeight() + 22);
             
@@ -37,7 +37,7 @@ public class Main {
         
         IMoveNode root = new EvolvedAgentFunctionOne();
         
-        Maze maze = new Maze();
+        Maze maze = new Maze(mMazeNumber);
         Agent agent = new Agent(root, maze);
         
         Window window = new Window(maze);

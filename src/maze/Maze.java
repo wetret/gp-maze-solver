@@ -8,18 +8,25 @@ public class Maze {
     private int[][] mGrid;
     private int mAgentCordX;
     private int mAgentCordY;
+    private int mMazeNumber;
     
-    public Maze(){       
+    public Maze(int pMazeNumber){       
         mAgentCordX = Config.DEFAULT.getAgentXCordStart();
         mAgentCordY = Config.DEFAULT.getAgentYCordStart();
+        mMazeNumber = pMazeNumber;
         
         init();
     }
     
     private void init(){
-        mGrid = MazeBuilder.build();
+        mGrid = MazeBuilder.build(mMazeNumber);
     }
     
+    
+    public int getMazeNumber() {
+        return mMazeNumber;
+    }
+
     public boolean isWallEast(){
       if(mGrid[mAgentCordX + 1][mAgentCordY] == Config.DEFAULT.getWallPosition()){
           return true;
