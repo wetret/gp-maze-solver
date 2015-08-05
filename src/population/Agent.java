@@ -50,36 +50,28 @@ public class Agent {
         switch (move) {
             case NORTH:
                 if (!mMaze.isWallNorth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord-1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
                     mAgentYCord = mAgentYCord - 1;
                 }
                 break;
             case EAST:
                 if (!mMaze.isWallEast()) {
-                    if(mMaze.getGrid()[mAgentXCord+1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
                     mAgentXCord = mAgentXCord + 1;
                 }
                 break;
             case SOUTH:
                 if (!mMaze.isWallSouth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord+1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
                     mAgentYCord = mAgentYCord + 1;
                 }
                 break;
             case WEST:
                 if (!mMaze.isWallWest()) {
-                    if(mMaze.getGrid()[mAgentXCord-1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
                     mAgentXCord = mAgentXCord - 1;
                 }
                 break;
+        }
+        
+        if(mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
+            mCollectedWayPoints++;
         }
 
         if (goalReached()) {
