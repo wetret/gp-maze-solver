@@ -22,13 +22,13 @@ public class NodeBuilder {
     private static final Random mRandom = ERandom.INSTANCE.getRandom(); 
     
     public static IMoveNode getMoveNode(){
-        int selection = mRandom.nextInt(6);
+        int selection = mRandom.nextInt(5);
         
-        if(inBetween(selection, 0, 2)){
+        if(inBetween(selection, 0, 1)){
             return new ConditionalNode();
-        } else if(selection == 3){
+        } else if(selection == 2){
             return new TurnLeft();
-        } else if(selection == 4){
+        } else if(selection == 3){
             return new TurnRight();
         } else {
             // selection should be 5
