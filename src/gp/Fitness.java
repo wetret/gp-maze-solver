@@ -14,7 +14,7 @@ public class Fitness {
         if(pFitnessFunction == 1){
             absoluteDistance(pPopulation);
         } else if(pFitnessFunction == 2){            
-            shortestPath(pPopulation);
+            breadcrums(pPopulation);
         }
         
         Collections.sort(pPopulation, new AgentComparator());
@@ -32,7 +32,7 @@ public class Fitness {
         }
     }
     
-    private static void shortestPath(List<Agent> pPopulation){
+    private static void breadcrums(List<Agent> pPopulation){
         for(Agent agent : pPopulation){
             int fitness = agent.getCollectedWayPoints();
             if(agent.isGoalReached()){
