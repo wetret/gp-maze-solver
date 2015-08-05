@@ -35,17 +35,25 @@ public class GeneticProgramming {
             
             List<Agent> newPopulation = new ArrayList<Agent>();
             
+            System.out.println("REPRODUCTION");
             Reproduction.apply(mPopulation, newPopulation);
+            
+            System.out.println("CROSSOVER");
             while(newPopulation.size() < mPopulation.size()){
                int rand1 = rand.nextInt(mPopulation.size());
                int rand2 = rand.nextInt(mPopulation.size());
                newPopulation.add(Crossover.apply(mPopulation.get(rand1).getCopy(), mPopulation.get(rand2).getCopy()));
             }
+            
+            System.out.println("MUTATION");
             Mutation.apply(newPopulation);
             
             mPopulation = new ArrayList<Agent>(newPopulation);
             
+            System.out.println("TESTRUN");
             TestRun.apply(mPopulation);
+            
+            System.out.println("FITNESS");
             Fitness.calculate(mPopulation, mFitnessFunction);
             
             generation++;

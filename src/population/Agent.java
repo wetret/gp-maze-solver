@@ -79,6 +79,7 @@ public class Agent {
                 // No change in orientation
                 break;
         }
+        
         if(!mMaze.isWallAhead(mOrientation)){   
             if(mOrientation == EOrientation.EAST){
                 mAgentXCord = mAgentXCord + 1;
@@ -90,6 +91,10 @@ public class Agent {
                 // Orientation is NORTH
                 mAgentYCord = mAgentYCord - 1;
             }
+        }
+        
+        if(mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
+            mCollectedWayPoints++;
         }
 
         if (goalReached()) {
