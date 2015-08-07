@@ -37,7 +37,7 @@ public class Fitness {
             int fitness = 3 * agent.getCollectedWayPoints();
          
             if(agent.isGoalReached()){
-                fitness = fitness + 25;
+                fitness = fitness + 250;
             }
             
             fitness = fitness - agent.getStepsTaken();
