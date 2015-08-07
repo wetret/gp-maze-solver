@@ -3,8 +3,7 @@ package utils;
 
 public enum Config {
     
-    // for maze 1 - 5
-    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 5, 0, 2, 40, 2, 475, 0.25);
+    DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 5, 0, 2, 40, 2, 500, 0.25);
 
     private int mGridWidth;
     private int mGridHeight;

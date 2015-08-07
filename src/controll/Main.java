@@ -45,7 +45,6 @@ public class Main {
         top.setVisible(true);
         
         boolean notReachedGoal = true;
-        int counter = 0;
         while(notReachedGoal){
             notReachedGoal = agent.move();
                 
@@ -55,9 +54,8 @@ public class Main {
                 pEx.printStackTrace();
             }
             
-            counter++;
             top.repaint();
         }
-        System.out.println("Number of steps needed: " + counter);
+        System.out.println("Number of steps needed: " + agent.getStepsTaken());
     }
 }

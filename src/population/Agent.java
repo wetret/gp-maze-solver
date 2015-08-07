@@ -20,6 +20,7 @@ public class Agent {
     private int       mFitness;
     private boolean   mGoalReached;
     private int       mCollectedWayPoints;
+    private int       mStepsTaken;
 
     public Agent(IMoveNode pRoot, Maze pMaze) {
         mRoot = pRoot;
@@ -32,6 +33,7 @@ public class Agent {
         mFitness = 100000;
         mGoalReached = false;
         mCollectedWayPoints = 0;
+        setStepsTaken(0);
     }
 
 
@@ -48,6 +50,7 @@ public class Agent {
 
 
     public boolean move() {
+        mStepsTaken++;
         ETurn move = mRoot.evaluate(mMaze, mOrientation);
 
         switch (move) {
@@ -98,7 +101,6 @@ public class Agent {
         }
 
         if (goalReached()) {
-            System.out.println("FOUND ESCAPE!!");
             mGoalReached = true;
             return false;
         }
@@ -108,7 +110,6 @@ public class Agent {
     }
 
     private boolean goalReached() {
-        /*TODO: check all surrounding positions*/
         if (mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getGoalPosition()) {
             return true;
         } else {
@@ -163,6 +164,7 @@ public class Agent {
         mMaze = new Maze(mazeNumber);
         mGoalReached = false;
         mCollectedWayPoints = 0;
+        setStepsTaken(0);
     }
 
     public boolean isGoalReached() {
@@ -179,6 +181,16 @@ public class Agent {
 
     public void setCollectedWayPoints(int pCollectedWayPoints) {
         mCollectedWayPoints = pCollectedWayPoints;
+    }
+
+
+    public int getStepsTaken() {
+        return mStepsTaken;
+    }
+
+
+    public void setStepsTaken(int pStepsTaken) {
+        mStepsTaken = pStepsTaken;
     }
 
 }

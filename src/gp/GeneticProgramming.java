@@ -28,17 +28,15 @@ public class GeneticProgramming {
         
         Fitness.calculate(mPopulation, mFitnessFunction);
         
-//        while(mPopulation.get(0).getFitness() < 0) { 
-        while(mPopulation.get(0).getFitness() < 500) { 
+        while(generation < 200) { 
             if(generation % 10 == 0){
-                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness() /**/+ " " +  mPopulation.get(0).getEvaluationTree().evaluationToString()/**/);
+                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
             
             List<Agent> newPopulation = new ArrayList<Agent>();
             
             Reproduction.apply(mPopulation, newPopulation);
             
-            int i = 0;
             while(newPopulation.size() < mPopulation.size()){
                int rand1 = rand.nextInt(mPopulation.size());
                int rand2 = rand.nextInt(mPopulation.size());

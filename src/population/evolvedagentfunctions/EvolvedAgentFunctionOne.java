@@ -16,7 +16,7 @@ public class EvolvedAgentFunctionOne implements IMoveNode{
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
         
-        if ( !( pMaze.isWallRight(pOrientation) ) ) { return ETurn.RIGHT; } else { if (  pMaze.isWallAhead(pOrientation) ) { return ETurn.LEFT; } else { return ETurn.NOT; } }
+       if ( !( pMaze.isWallRight(pOrientation) ) ) { return ETurn.RIGHT; } else { if (  pMaze.isWallAhead(pOrientation) ) { return ETurn.LEFT; } else { return ETurn.NOT; } }
     }
 
     @Override
