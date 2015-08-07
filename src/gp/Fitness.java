@@ -35,10 +35,13 @@ public class Fitness {
     private static void breadcrums(List<Agent> pPopulation){
         for(Agent agent : pPopulation){
             int fitness = 3 * agent.getCollectedWayPoints();
-            fitness = fitness - agent.getStepsTaken();
+         
             if(agent.isGoalReached()){
-                fitness = fitness + 10;
+                fitness = fitness + 25;
             }
+            
+            fitness = fitness - agent.getStepsTaken();
+            
             agent.setFitness(fitness);
         }
     }
