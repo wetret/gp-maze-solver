@@ -22,22 +22,22 @@ public class NodeBuilder {
     private static final Random mRandom = ERandom.INSTANCE.getRandom(); 
     
     public static IMoveNode getMoveNode(){
-        int selection = mRandom.nextInt(6);
+        int selection = mRandom.nextInt(10);
         
-        if(inBetween(selection, 0, 1)){
+        if(selection == 0){
             return new ConditionalNode();
-        } else if(selection == 2){
+        } else if(inBetween(selection, 1, 3)){
             return new TurnLeft();
-        } else if(selection == 3){
+        } else if(inBetween(selection, 4, 6)){
             return new TurnRight();
         } else {
-            // selection should be 4 or 5
+            // selection should be 7, 8 or 9
             return new TurnNot();
         }
     }
     
     public static IEvaluationNode getEvaluationNode(){
-        int selection = mRandom.nextInt(8);
+        int selection = mRandom.nextInt(14);
         
         if(selection == 0){
            return new AndNode();
@@ -45,16 +45,16 @@ public class NodeBuilder {
            return new OrNode();
         } else if(selection == 2){
             return new NotNode();
-        } else if(selection == 3){
+        } else if(inBetween(selection, 3, 5)){
             return new WallAhead();
-        } else if(selection == 4){
+        } else if(inBetween(selection, 6, 8)){
             return new WallLeft();
-        } else if(selection == 5){
+        } else if(selection == 9){
             return new WallLeftAhead();
-        } else if(selection == 6){
+        } else if(inBetween(selection, 10, 12)){
             return new WallRight();
         } else {
-            // selection should be 7
+            // selection should be 13
             return new WallRightAhead();
         } 
     }

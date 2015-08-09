@@ -15,12 +15,14 @@ public class GeneticProgramming {
     
     private List<Agent> mPopulation;
     private Random rand;
+    private int mPopulationSize;
     private int mFitnessFunction;
     
     public GeneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
         mPopulation = PopulationBuilder.build(pPopulationSize, pMazeNumber);
         rand = ERandom.INSTANCE.getRandom();
         mFitnessFunction = pFitnessFunction;
+        mPopulationSize = pPopulationSize;
     }
     
     public Agent evolve(){
@@ -31,11 +33,11 @@ public class GeneticProgramming {
         Fitness.calculate(mPopulation, mFitnessFunction);
         
         while(generation < 500) { 
-            if(generation % 10 == 0){
+            if(generation % 1 == 0){
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
             
-            List<Agent> newPopulation = new ArrayList<Agent>();
+            List<Agent> newPopulation = new ArrayList<Agent>(mPopulationSize);
             
             Reproduction.apply(mPopulation, newPopulation);
             

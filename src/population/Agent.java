@@ -33,7 +33,7 @@ public class Agent {
         mFitness = 100000;
         mGoalReached = false;
         mCollectedWayPoints = 0;
-        setStepsTaken(0);
+        mStepsTaken = 0;
     }
 
 
@@ -44,8 +44,12 @@ public class Agent {
 
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+        mOrientation = pAgent.getOrientation();
 
-        mFitness = 100000;
+        mFitness = pAgent.getFitness();
+        mGoalReached = false;
+        mCollectedWayPoints = 0;
+        mStepsTaken = 0;
     }
 
 
@@ -164,8 +168,21 @@ public class Agent {
         mMaze = new Maze(mazeNumber);
         mGoalReached = false;
         mCollectedWayPoints = 0;
-        setStepsTaken(0);
+        mStepsTaken = 0;
+        mOrientation = EOrientation.EAST;
     }
+
+    
+    public EOrientation getOrientation() {
+        return mOrientation;
+    }
+
+
+    
+    public void setOrientation(EOrientation pOrientation) {
+        mOrientation = pOrientation;
+    }
+
 
     public boolean isGoalReached() {
         return mGoalReached;

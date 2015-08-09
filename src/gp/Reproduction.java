@@ -12,6 +12,7 @@ public class Reproduction {
         for(int i = 0; i < (pOldPopulation.size() / 10); i++){
             pNewPopulation.add(pOldPopulation.get(i).getCopy());
         }
+        
     }
 
 }
