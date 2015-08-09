@@ -33,7 +33,7 @@ public class GeneticProgramming {
         Fitness.calculate(mPopulation, mFitnessFunction);
         
         while(generation < 500) { 
-            if(generation % 1 == 0){
+            if(generation % 10 == 0){
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
             
@@ -47,8 +47,8 @@ public class GeneticProgramming {
             }
             
             while(newPopulation.size() < mPopulation.size()){
-               int rand1 = rand.nextInt(mPopulation.size());
-               int rand2 = rand.nextInt(mPopulation.size());
+               int rand1 = rand.nextInt(mPopulationSize);
+               int rand2 = rand.nextInt(mPopulationSize);
                newPopulation.add(Crossover.apply(mPopulation.get(rand1).getCopy(), mPopulation.get(rand2).getCopy()));
             }
             

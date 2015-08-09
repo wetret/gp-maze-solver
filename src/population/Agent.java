@@ -47,9 +47,9 @@ public class Agent {
         mOrientation = pAgent.getOrientation();
 
         mFitness = pAgent.getFitness();
-        mGoalReached = false;
-        mCollectedWayPoints = 0;
-        mStepsTaken = 0;
+        mGoalReached = pAgent.isGoalReached();
+        mCollectedWayPoints = pAgent.getCollectedWayPoints();
+        mStepsTaken = pAgent.getStepsTaken();
     }
 
 

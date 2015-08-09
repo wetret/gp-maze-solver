@@ -14,11 +14,15 @@ public class Fitness {
         if(pFitnessFunction == 1){
             absoluteDistance(pPopulation);
         } else if(pFitnessFunction == 2){            
+            stepsTaken(pPopulation);
+        } else if(pFitnessFunction == 3){
             breadcrums(pPopulation);
         }
         
         Collections.sort(pPopulation, new AgentComparator());
     }
+    
+    
     
     private static void absoluteDistance(List<Agent> pPopulation){
         for(Agent agent : pPopulation){
@@ -32,6 +36,21 @@ public class Fitness {
         }
     }
     
+    private static void stepsTaken(List<Agent> pPopulation){
+        for(Agent agent : pPopulation){
+          int fitness;
+          if(agent.isGoalReached()){
+              fitness = 500 - agent.getStepsTaken();
+          } else {
+              fitness = agent.getStepsTaken() - 500;
+          }
+          
+          agent.setFitness(fitness);
+          
+          agent.resetValues();
+        }
+    }
+    
     private static void breadcrums(List<Agent> pPopulation){
         for(Agent agent : pPopulation){
             int fitness = agent.getCollectedWayPoints();
@@ -40,9 +59,11 @@ public class Fitness {
             if(agent.isGoalReached()){
                 fitness = fitness + 500;
             }
-            
+          
             agent.setFitness(fitness);
+            
+            agent.resetValues();
         }
     }
-
+    
 }
