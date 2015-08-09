@@ -21,34 +21,34 @@ public class NodeBuilder {
     private static final Random mRandom = ERandom.INSTANCE.getRandom(); 
     
     public static IMoveNode getMoveNode(){
-        int selection = mRandom.nextInt(7);
+        int selection = mRandom.nextInt(10);
         
         if(selection == 0){
             return new ConditionalNode();
-        } else if(inBetween(selection, 1, 2)){
+        } else if(inBetween(selection, 1, 3)){
             return new TurnLeft();
-        } else if(inBetween(selection, 3, 4)){
+        } else if(inBetween(selection, 4, 6)){
             return new TurnRight();
         } else {
-            // selection should be between 5 and 6
+            // selection should be between 7 and 9
             return new TurnNot();
         }
     }
     
     public static IEvaluationNode getEvaluationNode(){
-        int selection = mRandom.nextInt(13);
+        int selection = mRandom.nextInt(16);
         
         if(inBetween(selection, 0,3)){
            return new AndNode();
         } else if(inBetween(selection, 4,7)){
             return new NotNode();
-        } else if(selection == 8){
+        } else if(inBetween(selection, 8,9)){
             return new WallAhead();
-        } else if(selection == 9){
+        } else if(inBetween(selection, 10, 11)){
             return new WallLeft();
-        } else if(selection == 10){
+        } else if(inBetween(selection, 12, 13)){
             return new WallRight();
-        } else if(selection == 11){
+        } else if(selection == 14){
             return new WallRightAhead();
         } else {
             return new WallLeftAhead();
