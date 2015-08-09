@@ -48,8 +48,9 @@ public class Mutation {
                    List<INode> children = ((ConditionalNode) mutationNode).getChildren();
                    
                    if(children.get(childMutationPoint) instanceof IMoveNode){  
+                       int position = rand.nextInt(2);
                        IMoveNode newChild = NodeBuilder.getMoveNode();
-                       ((ConditionalNode) mutationNode).setChild(childMutationPoint, newChild);
+                       ((ConditionalNode) mutationNode).setChild(position, newChild);
                    } else {
                        IEvaluationNode newChild = NodeBuilder.getEvaluationNode();
                        ((ConditionalNode) mutationNode).setChild(childMutationPoint, newChild);
