@@ -2,25 +2,18 @@ package gp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import maze.Maze;
 import population.Agent;
 import population.PopulationBuilder;
-import tree.NodeBuilder;
-import utils.ERandom;
 
 
 public class GeneticProgramming {
 
     private List<Agent> mPopulation;
-    private Random      rand;
     private int         mPopulationSize;
     private int         mFitnessFunction;
 
     public GeneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
         mPopulation = PopulationBuilder.build(pPopulationSize, pMazeNumber);
-        rand = ERandom.INSTANCE.getRandom();
         mFitnessFunction = pFitnessFunction;
         mPopulationSize = pPopulationSize;
     }
