@@ -32,7 +32,7 @@ public class GeneticProgramming {
 
         Fitness.calculate(mPopulation, mFitnessFunction);
 
-        while (generation < 500) {
+        while (generation < 1000) {
             if (generation % 10 == 0) {
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
@@ -65,10 +65,6 @@ public class GeneticProgramming {
         
         }
         
-//        print(1);
-//        mPopulation = Crossover.apply(mPopulation.get(0).getCopy(), mPopulation.get(1).getCopy());
-//        print(2);
-
         // Return the best Agent
         return mPopulation.get(0);
     }
