@@ -17,62 +17,8 @@ public class EvolvedAgentFunctionOne
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
 
-        if (pMaze.isWallRight(pOrientation)) {
-            if (pMaze.isWallAhead(pOrientation)) {
-                return ETurn.LEFT;
-            } else {
-                if (!((pMaze.isWallLeftAhead(pOrientation) && (!(pMaze.isWallRight(pOrientation)) && pMaze.isWallAhead(pOrientation))))) {
-                    if (!(!(pMaze.isWallAhead(pOrientation)))) {
-                        return ETurn.NOT;
-                    } else {
-                        return ETurn.NOT;
-                    }
-                } else {
-                    if (!(!((pMaze.isWallRight(pOrientation) && pMaze.isWallLeft(pOrientation))))) {
-                        return ETurn.RIGHT;
-                    } else {
-                        if (pMaze.isWallRight(pOrientation)) {
-                            if (pMaze.isWallRightAhead(pOrientation)) {
-                                return ETurn.NOT;
-                            } else {
-                                return ETurn.NOT;
-                            }
-                        } else {
-                            if (pMaze.isWallRightAhead(pOrientation)) {
-                                if (!(pMaze.isWallAhead(pOrientation))) {
-                                    if (((pMaze.isWallRight(pOrientation) && ((pMaze.isWallLeft(pOrientation) && !(pMaze.isWallRightAhead(pOrientation))) && !((!((pMaze
-                                            .isWallAhead(pOrientation) && (!((pMaze.isWallLeft(pOrientation) && pMaze.isWallRightAhead(pOrientation))) && pMaze
-                                            .isWallLeft(pOrientation)))) && (pMaze.isWallAhead(pOrientation) && pMaze.isWallRight(pOrientation)))))) && pMaze
-                                            .isWallRight(pOrientation))) {
-                                        return ETurn.RIGHT;
-                                    } else {
-                                        if (pMaze.isWallAhead(pOrientation)) {
-                                            if (!(!((pMaze.isWallRight(pOrientation) && (pMaze.isWallRightAhead(pOrientation) && pMaze.isWallLeftAhead(pOrientation)))))) {
-                                                return ETurn.NOT;
-                                            } else {
-                                                if (pMaze.isWallRight(pOrientation)) {
-                                                    return ETurn.RIGHT;
-                                                } else {
-                                                    return ETurn.LEFT;
-                                                }
-                                            }
-                                        } else {
-                                            return ETurn.LEFT;
-                                        }
-                                    }
-                                } else {
-                                    return ETurn.RIGHT;
-                                }
-                            } else {
-                                return ETurn.NOT;
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            return ETurn.RIGHT;
-        }
+        if ( pMaze.isWallLeft(pOrientation) ) { if (  pMaze.isWallAhead(pOrientation) ) { return ETurn.RIGHT; } else { if ( ( pMaze.isWallLeft(pOrientation) && !( pMaze.isWallLeft(pOrientation) ) ) ) { if ( !(  pMaze.isWallAhead(pOrientation) ) ) { if (  pMaze.isWallAhead(pOrientation) ) { return ETurn.LEFT; } else { if ( !( pMaze.isWallLeft(pOrientation) ) ) { if (  pMaze.isWallAhead(pOrientation) ) { if ( pMaze.isWallRight(pOrientation) ) { return ETurn.NOT; } else { return ETurn.NOT; } } else { if ( !( !(  pMaze.isWallAhead(pOrientation) ) ) ) { return ETurn.NOT; } else { return ETurn.LEFT; } } } else { if ( !( pMaze.isWallLeft(pOrientation) ) ) { return ETurn.NOT; } else { if ( pMaze.isWallLeftAhead(pOrientation) ) { return ETurn.LEFT; } else { return ETurn.RIGHT; } } } } } else { if (  pMaze.isWallAhead(pOrientation) ) { return ETurn.NOT; } else { if ( pMaze.isWallRightAhead(pOrientation) ) { return ETurn.RIGHT; } else { return ETurn.LEFT; } } } } else { if ( !( pMaze.isWallLeftAhead(pOrientation) ) ) { if ( pMaze.isWallRight(pOrientation) ) { if ( ( ( !( ( pMaze.isWallLeft(pOrientation) && ( !( ( !( !( pMaze.isWallRight(pOrientation) ) ) && ( ( !( pMaze.isWallLeft(pOrientation) ) && pMaze.isWallRight(pOrientation) ) && ( pMaze.isWallRight(pOrientation) && ( ( pMaze.isWallLeft(pOrientation) && !( !( pMaze.isWallLeft(pOrientation) ) ) ) && pMaze.isWallRight(pOrientation) ) ) ) ) ) && !( !( ( pMaze.isWallLeft(pOrientation) && pMaze.isWallRight(pOrientation) ) ) ) ) ) ) && pMaze.isWallRightAhead(pOrientation) ) && pMaze.isWallLeftAhead(pOrientation) ) ) { return ETurn.LEFT; } else { return ETurn.NOT; } } else { return ETurn.RIGHT; } } else { return ETurn.NOT; } } } } else { return ETurn.LEFT; }
+
     }
 
     @Override

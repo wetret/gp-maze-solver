@@ -52,11 +52,6 @@ public class Fitness {
     private static void breadcrums(List<Agent> pPopulation) {
         for (Agent agent : pPopulation) {
             int fitness = agent.getCollectedWayPoints();
-            fitness = fitness - agent.getStepsTaken();
-
-            if (agent.isGoalReached()) {
-                fitness = fitness + Config.DEFAULT.getMaxMoves();
-            }
 
             agent.setFitness(fitness);
 

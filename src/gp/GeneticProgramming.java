@@ -45,11 +45,11 @@ public class GeneticProgramming {
             for (int i = 0; i < mPopulation.size() / 10; i++) {
                 newPopulation.add(new Agent(NodeBuilder.getMoveNode(), new Maze(mazeNumber)));
             }
-
+            
+            int i = 0;
             while (newPopulation.size() < mPopulation.size()) {
-                int rand1 = rand.nextInt(mPopulationSize);
-                int rand2 = rand.nextInt(mPopulationSize);
-                newPopulation.add(Crossover.apply(mPopulation.get(rand1).getCopy(), mPopulation.get(rand2).getCopy()));
+                newPopulation.addAll(Crossover.apply(mPopulation.get(i).getCopy(), mPopulation.get(i+1).getCopy()));
+                i = i + 2;
             }
 
             Mutation.apply(newPopulation);
@@ -61,7 +61,13 @@ public class GeneticProgramming {
             Fitness.calculate(mPopulation, mFitnessFunction);
 
             generation++;
+        
+        
         }
+        
+//        print(1);
+//        mPopulation = Crossover.apply(mPopulation.get(0).getCopy(), mPopulation.get(1).getCopy());
+//        print(2);
 
         // Return the best Agent
         return mPopulation.get(0);
