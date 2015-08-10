@@ -25,7 +25,7 @@ public class GeneticProgramming {
 
         Fitness.calculate(mPopulation, mFitnessFunction);
 
-        while (generation < 500) {
+        while (generation < 400) {
             if (generation % 10 == 0) {
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
