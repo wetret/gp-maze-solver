@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 public enum ERandom {
-    
+
     INSTANCE(new Random());
 
     private Random mRandom;
@@ -13,7 +13,7 @@ public enum ERandom {
         mRandom = pRandom;
     }
 
-    public Random getRandom(){
+    public Random getRandom() {
         return mRandom;
     }
 }

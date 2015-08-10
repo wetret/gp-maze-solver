@@ -2,32 +2,32 @@ package utils;
 
 
 public enum Config {
-    
+
     DEFAULT(41, 41, 7, 100, 100, 1, 2, 0, 1, 2, 3, 4, 5, 0, 2, 40, 2, 600, 0.25);
 
-    private int mGridWidth;
-    private int mGridHeight;
-    private int mPixelSize;
-    private int mXCord;
-    private int mYCord;
-    private int mAgentXCordStart;
-    private int mAgentYCordStart;
-    private int mNotWallPosition;
-    private int mWallPosition;
-    private int mAgentPosition;
-    private int mGoalPosition;
-    private int mEntryPosition;
-    private int mWayPointPosition;
-    private int mEntryCordX;
-    private int mEntryCordY;
-    private int mGoalCordX;
-    private int mGoalCordY;
-    private int mMaxMoves;
+    private int    mGridWidth;
+    private int    mGridHeight;
+    private int    mPixelSize;
+    private int    mXCord;
+    private int    mYCord;
+    private int    mAgentXCordStart;
+    private int    mAgentYCordStart;
+    private int    mNotWallPosition;
+    private int    mWallPosition;
+    private int    mAgentPosition;
+    private int    mGoalPosition;
+    private int    mEntryPosition;
+    private int    mWayPointPosition;
+    private int    mEntryCordX;
+    private int    mEntryCordY;
+    private int    mGoalCordX;
+    private int    mGoalCordY;
+    private int    mMaxMoves;
     private double mMutationPercentage;
 
-    Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart, 
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pWayPointPosition, int pEntryCordX, int pEntryCordY, int pGoalCordX, 
-            int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
+    Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart,
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pWayPointPosition, 
+            int pEntryCordX, int pEntryCordY, int pGoalCordX, int pGoalCordY, int pMaxMoves, double pMutationPercentage) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
         mPixelSize = pPixelSize;
@@ -48,11 +48,11 @@ public enum Config {
         mMaxMoves = pMaxMoves;
         mMutationPercentage = pMutationPercentage;
     }
-    
+
     public int getGridWidth() {
         return mGridWidth;
     }
-    
+
     public int getGridHeight() {
         return mGridHeight;
     }
@@ -68,56 +68,56 @@ public enum Config {
     public int getYCord() {
         return mYCord;
     }
-    
+
     public int getAgentXCordStart() {
         return mAgentXCordStart;
     }
-    
+
     public int getAgentYCordStart() {
         return mAgentYCordStart;
     }
-    
-    public int getNotWallPosition(){
+
+    public int getNotWallPosition() {
         return mNotWallPosition;
     }
-    
-    public int getWallPosition(){
+
+    public int getWallPosition() {
         return mWallPosition;
     }
-    
-    public int getAgentPosition(){
+
+    public int getAgentPosition() {
         return mAgentPosition;
     }
-    
-    public int getGoalPosition(){
+
+    public int getGoalPosition() {
         return mGoalPosition;
     }
-    
-    public int getGoalCordX(){
+
+    public int getGoalCordX() {
         return mGoalCordX;
     }
-    
-    public int getGoalCordY(){
+
+    public int getGoalCordY() {
         return mGoalCordY;
     }
-    
-    public int getMaxMoves(){
+
+    public int getMaxMoves() {
         return mMaxMoves;
     }
-    
-    public double getMutationPercentage(){
+
+    public double getMutationPercentage() {
         return mMutationPercentage;
     }
-    
-    public int getEntryPosition(){
+
+    public int getEntryPosition() {
         return mEntryPosition;
     }
-    
-    public int getEntryCordX(){
+
+    public int getEntryCordX() {
         return mEntryCordX;
     }
-    
-    public int getEntryCordY(){
+
+    public int getEntryCordY() {
         return mEntryCordY;
     }
 
@@ -128,5 +128,4 @@ public enum Config {
     public void setWayPointPosition(int pWayPointPosition) {
         mWayPointPosition = pWayPointPosition;
     }
-
 }
