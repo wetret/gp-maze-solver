@@ -33,10 +33,10 @@ public class GeneticProgramming {
             List<Agent> newPopulation = new ArrayList<Agent>(mPopulationSize);
 
             Reproduction.apply(mPopulation, newPopulation);
-            
+
             int i = 0;
             while (newPopulation.size() < mPopulation.size()) {
-                newPopulation.addAll(Crossover.apply(mPopulation.get(i).getCopy(), mPopulation.get(i+1).getCopy()));
+                newPopulation.addAll(Crossover.apply(mPopulation.get(i).getCopy(), mPopulation.get(i + 1).getCopy()));
                 i = i + 2;
             }
 
@@ -49,10 +49,8 @@ public class GeneticProgramming {
             Fitness.calculate(mPopulation, mFitnessFunction);
 
             generation++;
-        
-        
         }
-        
+
         // Return the best Agent
         return mPopulation.get(0);
     }
