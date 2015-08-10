@@ -27,7 +27,7 @@ public class Main {
     
     private static void geneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
        Agent best = new GeneticProgramming(pPopulationSize, pFitnessFunction, pMazeNumber).evolve();
-       System.out.println("\n" + best.getFitness() + " " + best.getEvaluationTree().evaluationToString());
+       System.out.println("\nBest Fitness: " + best.getFitness() + "\nEvolved Agent Function: " + best.getEvaluationTree().evaluationToString());
     }
     
     private static void withWindow(int mMazeNumber){
