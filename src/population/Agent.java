@@ -9,18 +9,17 @@ import utils.Config;
 
 public class Agent {
 
-    private IMoveNode mRoot;
-
-    private Maze      mMaze;
+    private IMoveNode    mRoot;
+    private Maze         mMaze;
 
     private EOrientation mOrientation;
-    private int       mAgentXCord;
-    private int       mAgentYCord;
+    private int          mAgentXCord;
+    private int          mAgentYCord;
 
-    private int       mFitness;
-    private boolean   mGoalReached;
-    private int       mCollectedWayPoints;
-    private int       mStepsTaken;
+    private int          mFitness;
+    private boolean      mGoalReached;
+    private int          mCollectedWayPoints;
+    private int          mStepsTaken;
 
     public Agent(IMoveNode pRoot, Maze pMaze) {
         mRoot = pRoot;
@@ -35,7 +34,6 @@ public class Agent {
         mCollectedWayPoints = 0;
         mStepsTaken = 0;
     }
-
 
     public Agent(Agent pAgent) {
         mRoot = (IMoveNode) pAgent.getEvaluationTree().getCopy();
@@ -52,18 +50,17 @@ public class Agent {
         mStepsTaken = pAgent.getStepsTaken();
     }
 
-
     public boolean move() {
         mStepsTaken++;
         ETurn move = mRoot.evaluate(mMaze, mOrientation);
 
         switch (move) {
             case LEFT:
-                if(mOrientation == EOrientation.EAST){
+                if (mOrientation == EOrientation.EAST) {
                     mOrientation = EOrientation.NORTH;
-                } else if(mOrientation == EOrientation.SOUTH){
+                } else if (mOrientation == EOrientation.SOUTH) {
                     mOrientation = EOrientation.EAST;
-                } else if(mOrientation == EOrientation.WEST){
+                } else if (mOrientation == EOrientation.WEST) {
                     mOrientation = EOrientation.SOUTH;
                 } else {
                     // Orientation is NORTH
@@ -71,11 +68,11 @@ public class Agent {
                 }
                 break;
             case RIGHT:
-                if(mOrientation == EOrientation.EAST){
+                if (mOrientation == EOrientation.EAST) {
                     mOrientation = EOrientation.SOUTH;
-                } else if(mOrientation == EOrientation.SOUTH){
+                } else if (mOrientation == EOrientation.SOUTH) {
                     mOrientation = EOrientation.WEST;
-                } else if(mOrientation == EOrientation.WEST){
+                } else if (mOrientation == EOrientation.WEST) {
                     mOrientation = EOrientation.NORTH;
                 } else {
                     // Orientation is NORTH
@@ -86,21 +83,21 @@ public class Agent {
                 // No change in orientation
                 break;
         }
-        
-        if(!mMaze.isWallAhead(mOrientation)){   
-            if(mOrientation == EOrientation.EAST){
+
+        if (!mMaze.isWallAhead(mOrientation)) {
+            if (mOrientation == EOrientation.EAST) {
                 mAgentXCord = mAgentXCord + 1;
-            } else if(mOrientation == EOrientation.SOUTH){
+            } else if (mOrientation == EOrientation.SOUTH) {
                 mAgentYCord = mAgentYCord + 1;
-            } else if(mOrientation == EOrientation.WEST){
+            } else if (mOrientation == EOrientation.WEST) {
                 mAgentXCord = mAgentXCord - 1;
             } else {
                 // Orientation is NORTH
                 mAgentYCord = mAgentYCord - 1;
             }
         }
-        
-        if(mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
+
+        if (mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getWayPointPosition()) {
             mCollectedWayPoints++;
         }
 
@@ -119,6 +116,17 @@ public class Agent {
         } else {
             return false;
         }
+    }
+
+    public void resetValues() {
+        mAgentXCord = Config.DEFAULT.getAgentXCordStart();
+        mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+        int mazeNumber = mMaze.getMazeNumber();
+        mMaze = new Maze(mazeNumber);
+        mGoalReached = false;
+        mCollectedWayPoints = 0;
+        mStepsTaken = 0;
+        mOrientation = EOrientation.EAST;
     }
 
     public int getXCord() {
@@ -161,28 +169,13 @@ public class Agent {
         return new Agent(this);
     }
 
-    public void resetValues() {
-        mAgentXCord = Config.DEFAULT.getAgentXCordStart();
-        mAgentYCord = Config.DEFAULT.getAgentYCordStart();
-        int mazeNumber = mMaze.getMazeNumber();
-        mMaze = new Maze(mazeNumber);
-        mGoalReached = false;
-        mCollectedWayPoints = 0;
-        mStepsTaken = 0;
-        mOrientation = EOrientation.EAST;
-    }
-
-    
     public EOrientation getOrientation() {
         return mOrientation;
     }
 
-
-    
     public void setOrientation(EOrientation pOrientation) {
         mOrientation = pOrientation;
     }
-
 
     public boolean isGoalReached() {
         return mGoalReached;
@@ -200,14 +193,11 @@ public class Agent {
         mCollectedWayPoints = pCollectedWayPoints;
     }
 
-
     public int getStepsTaken() {
         return mStepsTaken;
     }
 
-
     public void setStepsTaken(int pStepsTaken) {
         mStepsTaken = pStepsTaken;
     }
-
 }
