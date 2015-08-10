@@ -21,16 +21,16 @@ public class NodeBuilder {
     private static final Random mRandom = ERandom.INSTANCE.getRandom(); 
     
     public static IMoveNode getMoveNode(){
-        int selection = mRandom.nextInt(10);
+        int selection = mRandom.nextInt(5);
         
-        if(selection == 0){
+        if(inBetween(selection, 0, 1)){
             return new ConditionalNode();
-        } else if(inBetween(selection, 1, 3)){
+        } else if(selection == 2){
             return new TurnLeft();
-        } else if(inBetween(selection, 4, 6)){
+        } else if(selection == 3){
             return new TurnRight();
         } else {
-            // selection should be between 7 and 9
+            // selection should be 4
             return new TurnNot();
         }
     }
