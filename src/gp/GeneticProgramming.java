@@ -32,7 +32,7 @@ public class GeneticProgramming {
 
         Fitness.calculate(mPopulation, mFitnessFunction);
 
-        while (generation < 1000) {
+        while (generation < 500) {
             if (generation % 10 == 0) {
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
@@ -40,11 +40,6 @@ public class GeneticProgramming {
             List<Agent> newPopulation = new ArrayList<Agent>(mPopulationSize);
 
             Reproduction.apply(mPopulation, newPopulation);
-
-            int mazeNumber = mPopulation.get(0).getMaze().getMazeNumber();
-            for (int i = 0; i < mPopulation.size() / 10; i++) {
-                newPopulation.add(new Agent(NodeBuilder.getMoveNode(), new Maze(mazeNumber)));
-            }
             
             int i = 0;
             while (newPopulation.size() < mPopulation.size()) {
