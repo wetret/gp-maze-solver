@@ -10,9 +10,15 @@ import tree.IMoveNode;
 import tree.INode;
 
 
-public class TurnRight implements IMoveNode{
-    
-    public TurnRight(){
+public class TurnRight
+        implements IMoveNode {
+
+    public TurnRight() {
+    }
+
+    @Override
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        return ETurn.RIGHT;
     }
 
     @Override
@@ -24,7 +30,7 @@ public class TurnRight implements IMoveNode{
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
@@ -32,10 +38,4 @@ public class TurnRight implements IMoveNode{
     public INode getCopy() {
         return new TurnRight();
     }
-
-    @Override
-    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
-        return ETurn.RIGHT;
-    }
-
 }

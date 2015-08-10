@@ -2,5 +2,7 @@ package tree;
 
 
 public enum ETurn {
-    LEFT, RIGHT, NOT;
+    LEFT,
+    RIGHT,
+    NOT;
 }

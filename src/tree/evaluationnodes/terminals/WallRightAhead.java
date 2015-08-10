@@ -9,11 +9,17 @@ import tree.IEvaluationNode;
 import tree.INode;
 
 
-public class WallRightAhead implements IEvaluationNode{
+public class WallRightAhead
+        implements IEvaluationNode {
 
-    public WallRightAhead(){
+    public WallRightAhead() {
     }
-    
+
+    @Override
+    public boolean evaluate(Maze pMaze, EOrientation pOrientation) {
+        return pMaze.isWallRightAhead(pOrientation);
+    }
+
     @Override
     public String evaluationToString() {
         return "pMaze.isWallRightAhead(pOrientation)";
@@ -23,18 +29,12 @@ public class WallRightAhead implements IEvaluationNode{
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
     @Override
     public INode getCopy() {
-       return new WallRightAhead();
+        return new WallRightAhead();
     }
-
-    @Override
-    public boolean evaluate(Maze pMaze, EOrientation pOrientation) {
-        return pMaze.isWallRightAhead(pOrientation);
-    }
-
 }

@@ -11,18 +11,18 @@ import tree.NodeBuilder;
 import maze.Maze;
 
 
-public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
-    
+public class AndNode
+        implements IEvaluationNode, IEvaluationNonTerminal {
 
     private List<IEvaluationNode> mChildren;
-    
+
     public AndNode() {
         mChildren = new ArrayList<IEvaluationNode>(2);
         setChildren();
     }
-    
+
     // Copy constructor
-    private AndNode(AndNode pToCopy){
+    private AndNode(AndNode pToCopy) {
         mChildren = new ArrayList<IEvaluationNode>(2);
         mChildren.add((IEvaluationNode) pToCopy.getChildren().get(0).getCopy());
         mChildren.add((IEvaluationNode) pToCopy.getChildren().get(1).getCopy());
@@ -37,22 +37,22 @@ public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
     public String evaluationToString() {
         return "( " + mChildren.get(0).evaluationToString() + " && " + mChildren.get(1).evaluationToString() + " )";
     }
-    
+
     private void setChildren() {
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             mChildren.add(NodeBuilder.getEvaluationNode());
         }
     }
-    
+
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
-        for(IEvaluationNode child : mChildren){
+
+        for (IEvaluationNode child : mChildren) {
             nodes.addAll(child.getFlattenedTree());
         }
-        
+
         return nodes;
     }
 
@@ -70,5 +70,4 @@ public class AndNode implements IEvaluationNode, IEvaluationNonTerminal{
     public INode getCopy() {
         return new AndNode(this);
     }
-
 }

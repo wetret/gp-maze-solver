@@ -2,5 +2,8 @@ package tree;
 
 
 public enum EOrientation {
-    NORTH, SOUTH, EAST, WEST;
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST;
 }

@@ -51,6 +51,7 @@ public class NodeBuilder {
         } else if(selection == 14){
             return new WallRightAhead();
         } else {
+            // selection should be 15
             return new WallLeftAhead();
         }
     }
