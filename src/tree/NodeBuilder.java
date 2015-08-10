@@ -36,22 +36,22 @@ public class NodeBuilder {
     }
     
     public static IEvaluationNode getEvaluationNode(){
-        int selection = mRandom.nextInt(7);
+        int selection = mRandom.nextInt(9);
         
-        if(selection == 0){
+        if(inBetween(selection, 0, 1)){
            return new AndNode();
-        } else if(selection == 1){
+        } else if(inBetween(selection, 2, 3)){
             return new NotNode();
-        } else if(selection == 2){
-            return new WallAhead();
-        } else if(selection == 3){
-            return new WallLeft();
         } else if(selection == 4){
-            return new WallRight();
+            return new WallAhead();
         } else if(selection == 5){
+            return new WallLeft();
+        } else if(selection == 6){
+            return new WallRight();
+        } else if(selection == 7){
             return new WallRightAhead();
         } else {
-            // selection should be 6
+            // selection should be 8
             return new WallLeftAhead();
         }
     }
