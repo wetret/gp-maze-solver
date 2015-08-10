@@ -14,12 +14,14 @@ import utils.Config;
 public class Main {
     
     public static void main(String args[]){
-        if(args[0].equals("show")){  
+        if(args.length == 2 && args[0].equals("show") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7){  
             withWindow(Integer.parseInt(args[1]));
-        } else if(args[0].equals("evolve") && args.length == 4) {
+        } else if(args.length == 4 && args[0].equals("evolve") && Integer.parseInt(args[2]) > 0 && Integer.parseInt(args[2]) < 4 && Integer.parseInt(args[3]) > 0 && Integer.parseInt(args[3]) < 7 ) {
             geneticProgramming(Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
         } else {
-            System.out.println("Wrong input arguments");
+            System.out.println("Wrong input arguments, use: \n"
+                    + "- show <mazenumber> where the mazenumber is between 1 and 6 \n"
+                    + "- evolve <populationsize> <fitnessfunction> <mazenumber> where the fitnessfunction is between 1 and 3 and the mazenumber as above.");
         }
     }
     
@@ -56,6 +58,7 @@ public class Main {
             
             top.repaint();
         }
-        System.out.println("Number of steps needed: " + agent.getStepsTaken());
+        
+        System.out.println("Number of steps needed to find the goal: " + agent.getStepsTaken());
     }
 }
