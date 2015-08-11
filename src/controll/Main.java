@@ -14,16 +14,19 @@ import utils.Config;
 public class Main {
 
     public static void main(String args[]) {
-        if (args.length == 2 && args[0].equals("show") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7) {
-            withWindow(Integer.parseInt(args[1]));
+        if (args.length == 2 && args[0].equals("run") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7) {
+            withWindow(Integer.parseInt(args[1]), true);
         } else if (args.length == 4 && args[0].equals("evolve") && Integer.parseInt(args[2]) > 0 && Integer.parseInt(args[2]) < 4 
                 && Integer.parseInt(args[3]) > 0 && Integer.parseInt(args[3]) < 7) {
             geneticProgramming(Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+        } else if (args.length == 2 && args[0].equals("show") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7){
+            withWindow(Integer.parseInt(args[1]), false);
         } else {
             System.out.println("Wrong input arguments, use: \n"
                     + "- show <mazenumber> where the mazenumber is between 1 and 6 \n"
-                    + "- evolve <populationsize> <fitnessfunction> <mazenumber> where the fitnessfunction "
-                    + "is between 1 and 3 and the mazenumber as above.");
+                    + "- run <mazenumber> where the mazenumber is between 1 and 6 \n"
+                    + "- evolve <populationsize> <fitnessfunction> <mazenumber> where \n"
+                    + "  the fitnessfunction is between 1 and 3 and the mazenumber as above.");
         }
     }
 
@@ -32,7 +35,7 @@ public class Main {
         System.out.println("\nBest Fitness: " + best.getFitness() + "\nEvolved Agent Function: " + best.getEvaluationTree().evaluationToString());
     }
 
-    private static void withWindow(int mMazeNumber) {
+    private static void withWindow(int mMazeNumber, boolean run) {
         JFrame top = new JFrame("Maze");
         top.setBounds(Config.DEFAULT.getXCord(), Config.DEFAULT.getYCord(), Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridWidth(), 
                 Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridHeight() + 22);
@@ -49,19 +52,23 @@ public class Main {
         top.getContentPane().add(window);
         top.setVisible(true);
 
-        boolean notReachedGoal = true;
-        while (notReachedGoal) {
-            notReachedGoal = agent.move();
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException pEx) {
-                pEx.printStackTrace();
+        if(run){ 
+            boolean notReachedGoal = true;
+            while (notReachedGoal) {
+                notReachedGoal = agent.move();
+                
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException pEx) {
+                    pEx.printStackTrace();
+                }
+                
+                top.repaint();
             }
-
-            top.repaint();
+            
+            System.out.println("Number of steps needed to find the goal: " + agent.getStepsTaken());
+        } else {
+            maze.setNewAgentCord(1, 1);
         }
-
-        System.out.println("Number of steps needed to find the goal: " + agent.getStepsTaken());
     }
 }
