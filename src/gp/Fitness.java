@@ -16,7 +16,7 @@ public class Fitness {
         } else if (pFitnessFunction == 2) {
             breadcrums(pPopulation);
         } else if (pFitnessFunction == 3) {
-            stepsTaken(pPopulation);
+            countOfMoves(pPopulation);
         }
 
         Collections.sort(pPopulation, new AgentComparator());
@@ -34,7 +34,7 @@ public class Fitness {
         }
     }
 
-    private static void stepsTaken(List<Agent> pPopulation) {
+    private static void countOfMoves(List<Agent> pPopulation) {
         for (Agent agent : pPopulation) {
             int fitness;
             if (agent.isGoalReached()) {
