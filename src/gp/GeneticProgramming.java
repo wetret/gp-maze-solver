@@ -2,8 +2,10 @@ package gp;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import population.Agent;
 import population.PopulationBuilder;
+import utils.Config;
 
 
 public class GeneticProgramming {
@@ -25,7 +27,7 @@ public class GeneticProgramming {
 
         Fitness.calculate(mPopulation, mFitnessFunction);
 
-        while (generation < 400) {
+        while (generation < Config.DEFAULT.getMaxNumberOfGenerations()) {
             if (generation % 10 == 0) {
                 System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
