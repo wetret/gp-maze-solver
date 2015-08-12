@@ -38,9 +38,9 @@ public class Fitness {
         for (Agent agent : pPopulation) {
             int fitness;
             if (agent.isGoalReached()) {
-                fitness = Config.DEFAULT.getMaxMoves() - agent.getStepsTaken();
+                fitness = 1000 - agent.getStepsTaken();
             } else {
-                fitness = agent.getStepsTaken() - Config.DEFAULT.getMaxMoves();
+                fitness = agent.getStepsTaken() - 1000;
             }
 
             agent.setFitness(fitness);
