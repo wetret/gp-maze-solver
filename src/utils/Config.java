@@ -3,7 +3,7 @@ package utils;
 
 public enum Config {
 
-    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 5, 0, 1, 40, 1, 600, 0.1, 200);
+    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 5, 0, 1, 40, 1, 600, 0.1, 400);
 
     private int    mGridWidth;
     private int    mGridHeight;

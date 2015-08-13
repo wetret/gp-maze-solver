@@ -5,7 +5,12 @@ import gp.GeneticProgramming;
 import javax.swing.JFrame;
 
 import population.Agent;
-import population.evolvedagentfunctions.EvolvedAgentFunctionOne;
+import population.evolvedagentfunctions.EvolvedAgentFunction1;
+import population.evolvedagentfunctions.EvolvedAgentFunction2;
+import population.evolvedagentfunctions.EvolvedAgentFunction3;
+import population.evolvedagentfunctions.EvolvedAgentFunction4;
+import population.evolvedagentfunctions.EvolvedAgentFunction5;
+import population.evolvedagentfunctions.EvolvedAgentFunction6;
 import maze.Maze;
 import tree.IMoveNode;
 import utils.Config;
@@ -43,7 +48,12 @@ public class Main {
         top.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         top.setResizable(true);
 
-        IMoveNode root = new EvolvedAgentFunctionOne();
+        // IMoveNode root = new EvolvedAgentFunction1();
+        // IMoveNode root = new EvolvedAgentFunction2();
+        // IMoveNode root = new EvolvedAgentFunction3();
+        // IMoveNode root = new EvolvedAgentFunction4();
+        // IMoveNode root = new EvolvedAgentFunction5();
+        IMoveNode root = new EvolvedAgentFunction6();
 
         Maze maze = new Maze(mMazeNumber);
         Agent agent = new Agent(root, maze);
