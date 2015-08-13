@@ -16,10 +16,10 @@ public class Main {
     public static void main(String args[]) {
         if (args.length == 2 && args[0].equals("run") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7) {
             withWindow(Integer.parseInt(args[1]), true);
-        } else if (args.length == 4 && args[0].equals("evolve") && Integer.parseInt(args[2]) > 0 && Integer.parseInt(args[2]) < 4 
+        } else if (args.length == 4 && args[0].equals("evolve") && Integer.parseInt(args[2]) > 0 && Integer.parseInt(args[2]) < 4
                 && Integer.parseInt(args[3]) > 0 && Integer.parseInt(args[3]) < 7) {
             geneticProgramming(Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-        } else if (args.length == 2 && args[0].equals("show") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7){
+        } else if (args.length == 2 && args[0].equals("show") && Integer.parseInt(args[1]) > 0 && Integer.parseInt(args[1]) < 7) {
             withWindow(Integer.parseInt(args[1]), false);
         } else {
             System.out.println("Wrong input arguments, use: \n"
@@ -37,7 +37,7 @@ public class Main {
 
     private static void withWindow(int mMazeNumber, boolean run) {
         JFrame top = new JFrame("Maze");
-        top.setBounds(Config.DEFAULT.getXCord(), Config.DEFAULT.getYCord(), Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridWidth(), 
+        top.setBounds(Config.DEFAULT.getXCord(), Config.DEFAULT.getYCord(), Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridWidth(),
                 Config.DEFAULT.getPixelSize() * Config.DEFAULT.getGridHeight() + 22);
 
         top.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,20 +52,20 @@ public class Main {
         top.getContentPane().add(window);
         top.setVisible(true);
 
-        if(run){ 
+        if (run) {
             boolean notReachedGoal = true;
             while (notReachedGoal) {
                 notReachedGoal = agent.move();
-                
+
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException pEx) {
                     pEx.printStackTrace();
                 }
-                
+
                 top.repaint();
             }
-            
+
             System.out.println("Number of steps needed to find the goal: " + agent.getStepsTaken());
         } else {
             maze.setNewAgentCord(1, 1);

@@ -3,7 +3,7 @@ package utils;
 
 public enum Config {
 
-    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 5, 0, 1, 40, 1, 600, 0.25, 400);
+    DEFAULT(41, 41, 7, 100, 100, 1, 1, 0, 1, 2, 3, 4, 5, 0, 1, 40, 1, 600, 0.1, 200);
 
     private int    mGridWidth;
     private int    mGridHeight;
@@ -24,10 +24,10 @@ public enum Config {
     private int    mGoalCordY;
     private int    mMaxMoves;
     private double mMutationPercentage;
-    private int mMaxNumberOfGenerations;
+    private int    mMaxNumberOfGenerations;
 
     Config(int pGridWidth, int pGridHeight, int pPixelSize, int pXCord, int pYCord, int pAgentXCordStart, int pAgentYCordStart,
-            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pWayPointPosition, 
+            int pNotWallPosition, int pWallPosition, int pAgentPosition, int pGoalPosition, int pEntryPosition, int pWayPointPosition,
             int pEntryCordX, int pEntryCordY, int pGoalCordX, int pGoalCordY, int pMaxMoves, double pMutationPercentage, int pMaxNumberOfGenerations) {
         mGridWidth = pGridWidth;
         mGridHeight = pGridHeight;
@@ -51,12 +51,12 @@ public enum Config {
         mMaxNumberOfGenerations = pMaxNumberOfGenerations;
     }
 
-    
+
     public int getMaxNumberOfGenerations() {
         return mMaxNumberOfGenerations;
     }
 
-    
+
     public void setMaxNumberOfGenerations(int pMaxNumberOfGenerations) {
         mMaxNumberOfGenerations = pMaxNumberOfGenerations;
     }

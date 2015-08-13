@@ -52,11 +52,11 @@ public class Fitness {
     private static void breadcrumbs(List<Agent> pPopulation) {
         for (Agent agent : pPopulation) {
             int fitness = agent.getCollectedWayPoints();
-            
-            if(agent.isGoalReached()){
+
+            if (agent.isGoalReached()) {
                 fitness += 1000;
             }
-            
+
             agent.setFitness(fitness);
 
             agent.resetValues();
