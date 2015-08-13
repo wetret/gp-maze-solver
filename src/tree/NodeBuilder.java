@@ -26,18 +26,18 @@ public class NodeBuilder {
     private static final Random mRandom = ERandom.INSTANCE.getRandom();
 
     public static IMoveNode getMoveNode() {
-        int selection = mRandom.nextInt(7);
+        int selection = mRandom.nextInt(6);
 
-        if (inBetween(selection, 0, 2)) {
+        if (inBetween(selection, 0, 1)) {
             return new ConditionalNode();
-        } else if (selection == 3) {
+        } else if (selection == 2) {
             return new MoveNorth();
-        } else if (selection == 4) {
+        } else if (selection == 3) {
             return new MoveEast();
-        } else if (selection == 5) {
+        } else if (selection == 4) {
             return new MoveSouth();
         } else {
-            // selection should be 6
+            // selection should be 5
             return new MoveWest();
         }
     }
