@@ -8,9 +8,9 @@ import tree.INode;
 import maze.Maze;
 
 
-public class NorthEastNode implements IEvaluationNode {
-    
-   
+public class NorthEastNode
+        implements IEvaluationNode {
+
     public NorthEastNode() {
     }
 
@@ -23,12 +23,12 @@ public class NorthEastNode implements IEvaluationNode {
     public String evaluationToString() {
         return "pMaze.isWallNorthEast()";
     }
-    
+
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
@@ -36,5 +36,4 @@ public class NorthEastNode implements IEvaluationNode {
     public INode getCopy() {
         return new NorthEastNode();
     }
-
 }

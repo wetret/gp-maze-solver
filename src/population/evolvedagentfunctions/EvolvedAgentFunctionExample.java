@@ -8,13 +8,14 @@ import tree.INode;
 import tree.Move;
 
 
-public class EvolvedAgentFunctionExample implements IMoveNode{
+public class EvolvedAgentFunctionExample
+        implements IMoveNode {
 
     @Override
     public Move evaluate(Maze pMaze) {
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
-        
+
         return null;
     }
 
@@ -30,11 +31,10 @@ public class EvolvedAgentFunctionExample implements IMoveNode{
         return null;
     }
 
-   
+
     @Override
     public INode getCopy() {
         // leave as is
         return null;
     }
-
 }

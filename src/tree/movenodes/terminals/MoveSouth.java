@@ -9,15 +9,15 @@ import tree.Move;
 import maze.Maze;
 
 
-public class MoveSouth implements IMoveNode{
-   
-    
+public class MoveSouth
+        implements IMoveNode {
+
     public MoveSouth() {
     }
 
     @Override
     public Move evaluate(Maze pMaze) {
-       return Move.SOUTH;
+        return Move.SOUTH;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class MoveSouth implements IMoveNode{
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
@@ -37,5 +37,4 @@ public class MoveSouth implements IMoveNode{
     public INode getCopy() {
         return new MoveSouth();
     }
-
 }

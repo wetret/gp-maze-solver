@@ -8,9 +8,9 @@ import tree.INode;
 import maze.Maze;
 
 
-public class WestNode implements IEvaluationNode {
-    
-    
+public class WestNode
+        implements IEvaluationNode {
+
     public WestNode() {
     }
 
@@ -21,14 +21,14 @@ public class WestNode implements IEvaluationNode {
 
     @Override
     public String evaluationToString() {
-       return "pMaze.isWallWest()";
+        return "pMaze.isWallWest()";
     }
-    
+
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
@@ -36,5 +36,4 @@ public class WestNode implements IEvaluationNode {
     public INode getCopy() {
         return new WestNode();
     }
-
 }

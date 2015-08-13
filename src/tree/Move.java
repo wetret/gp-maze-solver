@@ -2,5 +2,8 @@ package tree;
 
 
 public enum Move {
-    NORTH, SOUTH, EAST, WEST;
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST;
 }

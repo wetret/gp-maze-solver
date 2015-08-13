@@ -9,8 +9,9 @@ import tree.Move;
 import maze.Maze;
 
 
-public class MoveEast implements IMoveNode{
-    
+public class MoveEast
+        implements IMoveNode {
+
     public MoveEast() {
     }
 
@@ -28,7 +29,7 @@ public class MoveEast implements IMoveNode{
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 

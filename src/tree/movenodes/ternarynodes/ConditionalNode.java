@@ -11,20 +11,22 @@ import tree.NodeBuilder;
 import maze.Maze;
 
 
-public class ConditionalNode implements IMoveNode{
-    
+public class ConditionalNode
+        implements IMoveNode {
+
     private IEvaluationNode mEvaluationChild;
     private List<IMoveNode> mMoveChildren;
-    
+
     public ConditionalNode() {
         mMoveChildren = new ArrayList<IMoveNode>(2);
         setChildren();
     }
-    
-    private ConditionalNode(ConditionalNode pToCopy){
+
+    // Copy constructor
+    private ConditionalNode(ConditionalNode pToCopy) {
         List<INode> children = pToCopy.getChildren();
         mEvaluationChild = (IEvaluationNode) children.get(2).getCopy();
-        
+
         mMoveChildren = new ArrayList<IMoveNode>(2);
         mMoveChildren.add((IMoveNode) children.get(0).getCopy());
         mMoveChildren.add((IMoveNode) children.get(1).getCopy());
@@ -42,25 +44,25 @@ public class ConditionalNode implements IMoveNode{
     @Override
     public String evaluationToString() {
         return "if ( " + mEvaluationChild.evaluationToString() + " ) { " +
-                    getString(mMoveChildren.get(0)) +
-               " } else { " + 
-                   getString(mMoveChildren.get(1)) +
-               " }";
+                getString(mMoveChildren.get(0)) +
+                " } else { " +
+                getString(mMoveChildren.get(1)) +
+                " }";
     }
-    
-   private String getString(IMoveNode node){
-       if(node instanceof ConditionalNode) {
-           return node.evaluationToString();
-       } else {
-           return "return " + node.evaluationToString();
-       }
-   }
-    
+
+    private String getString(IMoveNode node) {
+        if (node instanceof ConditionalNode) {
+            return node.evaluationToString();
+        } else {
+            return "return " + node.evaluationToString();
+        }
+    }
+
     private void setChildren() {
-        for(int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             mMoveChildren.add(NodeBuilder.getMoveNode());
         }
-        
+
         mEvaluationChild = NodeBuilder.getEvaluationNode();
     }
 
@@ -68,31 +70,31 @@ public class ConditionalNode implements IMoveNode{
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         nodes.addAll(mEvaluationChild.getFlattenedTree());
-        
-        for(IMoveNode moveChild : mMoveChildren){
+
+        for (IMoveNode moveChild : mMoveChildren) {
             nodes.addAll(moveChild.getFlattenedTree());
         }
-        
+
         return nodes;
     }
 
-    public List<INode> getChildren(){
+    public List<INode> getChildren() {
         List<INode> children = new ArrayList<INode>();
         children.addAll(mMoveChildren);
         children.add(mEvaluationChild);
-        
+
         return children;
     }
-    
-    public void setChild(int pPosition, INode pNewChild){
-        if(pNewChild instanceof IEvaluationNode){
+
+    public void setChild(int pPosition, INode pNewChild) {
+        if (pNewChild instanceof IEvaluationNode) {
             mEvaluationChild = (IEvaluationNode) pNewChild;
         } else {
-            if(pNewChild instanceof IMoveNode){
+            if (pNewChild instanceof IMoveNode) {
                 mMoveChildren.set(pPosition, (IMoveNode) pNewChild);
-                
+
             }
         }
     }
@@ -101,5 +103,4 @@ public class ConditionalNode implements IMoveNode{
     public INode getCopy() {
         return new ConditionalNode(this);
     }
-    
 }
