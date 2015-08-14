@@ -40,7 +40,7 @@ public class Window
                 } else if (cell == Config.DEFAULT.getEntryPosition()) {
                     g.setColor(Color.RED);
                 } else if (cell == Config.DEFAULT.getWayPointPosition()) {
-                    g.setColor(Color.YELLOW);
+                    g.setColor(Color.WHITE);
                 } else {
                     g.setColor(Color.WHITE);
                 }
