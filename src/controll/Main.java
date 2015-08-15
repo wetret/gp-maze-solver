@@ -13,6 +13,11 @@ import tree.IMoveNode;
 import utils.Config;
 
 
+/**
+ * Version 1
+ * 
+ * @author Reto Wettstein
+ */
 public class Main {
 
     public static void main(String args[]) {
