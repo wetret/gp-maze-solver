@@ -6,7 +6,7 @@ This is the repository of my final project for the class "Theory, Programming an
 * Eclipse (can be downloaded [here](https://eclipse.org/downloads/)) or a Unix Shell
 
 ## Running the Programm
-* In a Unix Shell run `java -jar gp_maze_solver_v<versionnumber> <command>`
+* In a Unix Shell run `java -jar gp_maze_solver_v<versionnumber>.jar <command>`
 * In Eclipse the commands can be set under `Run As > Run Configurations > Arguments > Program Arguments`
 
 The following commands are available for execution:
