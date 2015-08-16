@@ -1,5 +1,5 @@
 # Genetic Programming: Evolution of a Maze Solving Agent
-This is the repository of my final project for the class "Theory, Programming and Simulation of Neural Netwroks". The goal of this project was to evolve an agent function for a maze solving agent by genetic programming. This README is based on `Version 2` of the implementation. For `Version 1` the return values and parameters of the functions referenced here could be different.
+This is the repository of my final project for the class "Theory, Programming and Simulation of Neural Networks". The goal of this project was to evolve an agent function for a maze solving agent by genetic programming. This README is based on `Version 2` of the implementation. In `Version 1` of the implementation the return values and parameters of the functions referenced here could be different.
 
 ## Requirements
 * Java, which can be downloaded [here](https://www.java.com/de/download/)
@@ -13,7 +13,7 @@ The following commands are available for execution:
 * evolve &lt;populationsize&gt; &lt;numberoffitnessfunction&gt; &lt;mazenumber&gt;: runs genetic programming on the selected maze with the selected fitness function and population size and returns an agent function
 * run &lt;mazenumber&gt;: shows the selected maze while an agent tries to find the exit
 * show &lt;mazenumber&gt;: only shows the selected maze
-The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunction&gt; between 1 and 3. The &lt;populationsize> can be any number.
+The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunction&gt; between 1 and 3. The &lt;populationsize> can be any number (1000 is recommended).
 
 All other options can be set in the file `Config.java`.
 
