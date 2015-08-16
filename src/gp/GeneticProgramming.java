@@ -29,7 +29,7 @@ public class GeneticProgramming {
 
         while (generation < Config.DEFAULT.getMaxNumberOfGenerations()) {
             if (generation % 10 == 0) {
-                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
+                System.out.println("Evolved Generations: " + generation);
             }
 
             List<Agent> newPopulation = new ArrayList<Agent>(mPopulationSize);
