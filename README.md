@@ -10,15 +10,15 @@ This is the repository of my final project for the class "Theory, Programming an
 * In Eclipse the commands can be set under `Run As > Run Configurations > Arguments > Program Arguments`
 
 The following commands are available for execution:
-* evolve &lt;populationsize&gt; &lt;numberoffitnessfunction&gt; &lt;mazenumber&gt;: runs genetic programming on the selected maze with the selected fitness function and population size and returns an agent function
-* run &lt;mazenumber&gt;: shows the selected maze while an agent tries to find the exit
-* show &lt;mazenumber&gt;: only shows the selected maze
-The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunction&gt; between 1 and 3. The &lt;populationsize> can be any number (1000 is recommended).
+* `evolve <populationsize> <numberoffitnessfunction> <mazenumber>`: runs genetic programming on the selected maze with the selected fitness function and population size and returns an agent function.
+* `run <mazenumber>`: shows the selected maze while an agent tries to find the exit.
+* `show <mazenumber>`: only shows the selected maze.
+The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunction&gt; between 1 and 3. The &lt;populationsize&gt; can be any number (1000 is recommended).
 
 All other options can be set in the file `Config.java`.
 
 ##Using an evolved Agent Function
-An evolved agent function can be added by using the template EvolvedAgentFunctionExample.java:
+An evolved agent function can be added by using the template `EvolvedAgentFunctionExample.java`:
 * Copy `EvolvedAgentFunctionExample.java` and insert the evolved agent function into the function `ETurn evaluate(Maze pMaze, EOrientation pOrientation) { PASTE EVOLVED AGENT FUNCTION HERE }`.
 * In the function `void withWindow(int mMazeNumber, boolean run)` of the file `Main.java` make a new object of the evolved agent function and name it `root`.
 * Use the command `run <mazenumber>`to see how the agent function performs in the selected maze (needs to be recompiled when using a Unix Shell).
