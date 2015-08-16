@@ -51,8 +51,8 @@ public class Main {
         top.setResizable(true);
 
         // IMoveNode root = new EvolvedAgentFunctionMaze1();
-        // IMoveNode root = new EvolvedAgentFunctionMaze2();
-        IMoveNode root = new EvolvedAgentFunctionMaze3();
+        IMoveNode root = new EvolvedAgentFunctionMaze2();
+        // IMoveNode root = new EvolvedAgentFunctionMaze3();
 
         Maze maze = new Maze(mMazeNumber);
         Agent agent = new Agent(root, maze);
