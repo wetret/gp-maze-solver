@@ -9,7 +9,7 @@ import tree.IMoveNode;
 import tree.INode;
 
 
-public class EvolvedAgentFunctionExample
+public class EvolvedAgentFunction6
         implements IMoveNode {
 
     @Override
@@ -17,8 +17,8 @@ public class EvolvedAgentFunctionExample
         // add the generated agent function from GeneticProgramming.evolve() here.
         // remove "return null"
 
-        return null;
-    }
+        // Agent function evolved using population size 1000, mutation percentage 0.1 and fitness function Count of Moves.
+        if ( pMaze.isWallRight(pOrientation) ) { if ( pMaze.isWallAhead(pOrientation) ) { return ETurn.LEFT; } else { if ( pMaze.isWallRight(pOrientation) ) { if ( pMaze.isWallAhead(pOrientation) ) { return ETurn.NOT; } else { return ETurn.NOT; } } else { if ( (pMaze.isWallAhead(pOrientation) && ( pMaze.isWallLeftAhead(pOrientation) && !( pMaze.isWallRightAhead(pOrientation) ) ) ) ) { return ETurn.NOT; } else { return ETurn.LEFT; } } } } else { return ETurn.RIGHT; } }
 
     @Override
     public String evaluationToString() {

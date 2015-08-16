@@ -2,63 +2,64 @@ package gp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import population.Agent;
 import population.PopulationBuilder;
-import utils.ERandom;
+import utils.Config;
 
 
 public class GeneticProgramming {
-    
+
     private List<Agent> mPopulation;
-    private Random rand;
-    private int mFitnessFunction;
-    
+    private int         mPopulationSize;
+    private int         mFitnessFunction;
+
     public GeneticProgramming(int pPopulationSize, int pFitnessFunction, int pMazeNumber) {
         mPopulation = PopulationBuilder.build(pPopulationSize, pMazeNumber);
-        rand = ERandom.INSTANCE.getRandom();
         mFitnessFunction = pFitnessFunction;
+        mPopulationSize = pPopulationSize;
     }
-    
-    public Agent evolve(){
+
+    public Agent evolve() {
         int generation = 0;
-        
+
         TestRun.apply(mPopulation);
+
         Fitness.calculate(mPopulation, mFitnessFunction);
-        
-//        while(mPopulation.get(0).getFitness() < 0) { 
-        while(mPopulation.get(0).getFitness() < 500) { 
-            if(generation % 100 == 0){
-                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness() /**/+ " " +  mPopulation.get(0).getEvaluationTree().evaluationToString()/**/);
+
+        while (generation < Config.DEFAULT.getMaxNumberOfGenerations()) {
+            if (generation % 10 == 0) {
+                System.out.println("Generation: " + generation + " Best Fitness: " + mPopulation.get(0).getFitness());
             }
-            
-            List<Agent> newPopulation = new ArrayList<Agent>();
-            
+
+            List<Agent> newPopulation = new ArrayList<Agent>(mPopulationSize);
+
             Reproduction.apply(mPopulation, newPopulation);
-            while(newPopulation.size() < mPopulation.size()){
-               int rand1 = rand.nextInt(mPopulation.size());
-               int rand2 = rand.nextInt(mPopulation.size());
-               newPopulation.add(Crossover.apply(mPopulation.get(rand1).getCopy(), mPopulation.get(rand2).getCopy()));
+
+            int i = 0;
+            while (newPopulation.size() < mPopulation.size()) {
+                newPopulation.addAll(Crossover.apply(mPopulation.get(i).getCopy(), mPopulation.get(i + 1).getCopy()));
+                i = i + 2;
             }
+
             Mutation.apply(newPopulation);
-            
+
             mPopulation = new ArrayList<Agent>(newPopulation);
-            
+
             TestRun.apply(mPopulation);
+
             Fitness.calculate(mPopulation, mFitnessFunction);
-            
+
             generation++;
         }
-        
+
         // Return the best Agent
         return mPopulation.get(0);
     }
-    
-    public void print(int step){
-        for(int i = 0; i < mPopulation.size(); i++){
+
+    public void print(int step) {
+        for (int i = 0; i < mPopulation.size(); i++) {
             System.out.println(step + " Fitness: " + mPopulation.get(i).getFitness() + "\nAgentFunction: " + mPopulation.get(i).getEvaluationTree().evaluationToString() + "\n");
         }
     }
-    
 }

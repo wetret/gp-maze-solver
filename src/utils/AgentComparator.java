@@ -5,7 +5,8 @@ import java.util.Comparator;
 import population.Agent;
 
 
-public class AgentComparator implements Comparator<Agent>{
+public class AgentComparator
+        implements Comparator<Agent> {
 
     @Override
     public int compare(Agent one, Agent two) {

@@ -1,39 +1,41 @@
-package tree.evaluationnodes.terminals;
+package tree.movenodes.terminals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tree.IEvaluationNode;
-import tree.INode;
 import maze.Maze;
+import tree.EOrientation;
+import tree.ETurn;
+import tree.IMoveNode;
+import tree.INode;
 
 
-public class NorthWestNode implements IEvaluationNode {
-    
-    public NorthWestNode() {
+public class TurnNot
+        implements IMoveNode {
+
+    public TurnNot() {
     }
 
     @Override
-    public boolean evaluate(Maze pMaze) {
-        return pMaze.isWallNorthWest();
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        return ETurn.NOT;
     }
 
     @Override
     public String evaluationToString() {
-        return "pMaze.isWallNorthWest()";
+        return "ETurn.NOT;";
     }
-    
+
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
     @Override
     public INode getCopy() {
-        return new NorthWestNode();
+        return new TurnNot();
     }
-
 }

@@ -1,36 +1,39 @@
 package population;
 
 import maze.Maze;
+import tree.ETurn;
 import tree.IMoveNode;
-import tree.Move;
+import tree.EOrientation;
 import utils.Config;
 
 
 public class Agent {
 
-    private IMoveNode mRoot;
+    private IMoveNode    mRoot;
+    private Maze         mMaze;
 
-    private Maze      mMaze;
+    private EOrientation mOrientation;
+    private int          mAgentXCord;
+    private int          mAgentYCord;
 
-    private int       mAgentXCord;
-    private int       mAgentYCord;
-
-    private int       mFitness;
-    private boolean   mGoalReached;
-    private int       mCollectedWayPoints;
+    private int          mFitness;
+    private boolean      mGoalReached;
+    private int          mCollectedWayPoints;
+    private int          mStepsTaken;
 
     public Agent(IMoveNode pRoot, Maze pMaze) {
         mRoot = pRoot;
         mMaze = pMaze;
 
+        mOrientation = EOrientation.EAST;
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
 
         mFitness = 100000;
         mGoalReached = false;
         mCollectedWayPoints = 0;
+        mStepsTaken = 0;
     }
-
 
     public Agent(Agent pAgent) {
         mRoot = (IMoveNode) pAgent.getEvaluationTree().getCopy();
@@ -39,51 +42,66 @@ public class Agent {
 
         mAgentXCord = Config.DEFAULT.getAgentXCordStart();
         mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+        mOrientation = pAgent.getOrientation();
 
-        mFitness = 100000;
+        mFitness = pAgent.getFitness();
+        mGoalReached = pAgent.isGoalReached();
+        mCollectedWayPoints = pAgent.getCollectedWayPoints();
+        mStepsTaken = pAgent.getStepsTaken();
     }
 
-
     public boolean move() {
-        Move move = mRoot.evaluate(mMaze);
+        mStepsTaken++;
+        ETurn move = mRoot.evaluate(mMaze, mOrientation);
 
         switch (move) {
-            case NORTH:
-                if (!mMaze.isWallNorth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord-1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentYCord = mAgentYCord - 1;
+            case LEFT:
+                if (mOrientation == EOrientation.EAST) {
+                    mOrientation = EOrientation.NORTH;
+                } else if (mOrientation == EOrientation.SOUTH) {
+                    mOrientation = EOrientation.EAST;
+                } else if (mOrientation == EOrientation.WEST) {
+                    mOrientation = EOrientation.SOUTH;
+                } else {
+                    // Orientation is NORTH
+                    mOrientation = EOrientation.WEST;
                 }
                 break;
-            case EAST:
-                if (!mMaze.isWallEast()) {
-                    if(mMaze.getGrid()[mAgentXCord+1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentXCord = mAgentXCord + 1;
+            case RIGHT:
+                if (mOrientation == EOrientation.EAST) {
+                    mOrientation = EOrientation.SOUTH;
+                } else if (mOrientation == EOrientation.SOUTH) {
+                    mOrientation = EOrientation.WEST;
+                } else if (mOrientation == EOrientation.WEST) {
+                    mOrientation = EOrientation.NORTH;
+                } else {
+                    // Orientation is NORTH
+                    mOrientation = EOrientation.EAST;
                 }
                 break;
-            case SOUTH:
-                if (!mMaze.isWallSouth()) {
-                    if(mMaze.getGrid()[mAgentXCord][mAgentYCord+1] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentYCord = mAgentYCord + 1;
-                }
-                break;
-            case WEST:
-                if (!mMaze.isWallWest()) {
-                    if(mMaze.getGrid()[mAgentXCord-1][mAgentYCord] == Config.DEFAULT.getWayPointPosition()){
-                        mCollectedWayPoints++;
-                    }
-                    mAgentXCord = mAgentXCord - 1;
-                }
+            case NOT:
+                // No change in orientation
                 break;
         }
 
+        if (!mMaze.isWallAhead(mOrientation)) {
+            if (mOrientation == EOrientation.EAST) {
+                mAgentXCord = mAgentXCord + 1;
+            } else if (mOrientation == EOrientation.SOUTH) {
+                mAgentYCord = mAgentYCord + 1;
+            } else if (mOrientation == EOrientation.WEST) {
+                mAgentXCord = mAgentXCord - 1;
+            } else {
+                // Orientation is NORTH
+                mAgentYCord = mAgentYCord - 1;
+            }
+        }
+
+        if (mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getWayPointPosition()) {
+            mCollectedWayPoints++;
+        }
+
         if (goalReached()) {
-            System.out.println("FOUND ESCAPE!!");
             mGoalReached = true;
             return false;
         }
@@ -93,12 +111,22 @@ public class Agent {
     }
 
     private boolean goalReached() {
-        /*TODO: check all surrounding positions*/
         if (mMaze.getGrid()[mAgentXCord][mAgentYCord] == Config.DEFAULT.getGoalPosition()) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public void resetValues() {
+        mAgentXCord = Config.DEFAULT.getAgentXCordStart();
+        mAgentYCord = Config.DEFAULT.getAgentYCordStart();
+        int mazeNumber = mMaze.getMazeNumber();
+        mMaze = new Maze(mazeNumber);
+        mGoalReached = false;
+        mCollectedWayPoints = 0;
+        mStepsTaken = 0;
+        mOrientation = EOrientation.EAST;
     }
 
     public int getXCord() {
@@ -141,13 +169,12 @@ public class Agent {
         return new Agent(this);
     }
 
-    public void resetValues() {
-        mAgentXCord = Config.DEFAULT.getAgentXCordStart();
-        mAgentYCord = Config.DEFAULT.getAgentYCordStart();
-        int mazeNumber = mMaze.getMazeNumber();
-        mMaze = new Maze(mazeNumber);
-        mGoalReached = false;
-        mCollectedWayPoints = 0;
+    public EOrientation getOrientation() {
+        return mOrientation;
+    }
+
+    public void setOrientation(EOrientation pOrientation) {
+        mOrientation = pOrientation;
     }
 
     public boolean isGoalReached() {
@@ -166,4 +193,11 @@ public class Agent {
         mCollectedWayPoints = pCollectedWayPoints;
     }
 
+    public int getStepsTaken() {
+        return mStepsTaken;
+    }
+
+    public void setStepsTaken(int pStepsTaken) {
+        mStepsTaken = pStepsTaken;
+    }
 }

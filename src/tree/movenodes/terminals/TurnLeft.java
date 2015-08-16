@@ -3,38 +3,39 @@ package tree.movenodes.terminals;
 import java.util.ArrayList;
 import java.util.List;
 
+import maze.Maze;
+import tree.EOrientation;
+import tree.ETurn;
 import tree.IMoveNode;
 import tree.INode;
-import tree.Move;
-import maze.Maze;
 
 
-public class MoveWest implements IMoveNode{
-    
-    public MoveWest(){
+public class TurnLeft
+        implements IMoveNode {
+
+    public TurnLeft() {
     }
 
     @Override
-    public Move evaluate(Maze pMaze) {
-        return Move.WEST;
+    public ETurn evaluate(Maze pMaze, EOrientation pOrientation) {
+        return ETurn.LEFT;
     }
 
     @Override
     public String evaluationToString() {
-        return "Move.WEST;";
+        return "ETurn.LEFT;";
     }
 
     @Override
     public List<INode> getFlattenedTree() {
         List<INode> nodes = new ArrayList<INode>();
         nodes.add(this);
-        
+
         return nodes;
     }
 
     @Override
     public INode getCopy() {
-        return new MoveWest();
+        return new TurnLeft();
     }
-
 }

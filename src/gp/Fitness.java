@@ -9,37 +9,57 @@ import utils.Config;
 
 
 public class Fitness {
-    
+
     public static void calculate(List<Agent> pPopulation, int pFitnessFunction) {
-        if(pFitnessFunction == 1){
+        if (pFitnessFunction == 1) {
             absoluteDistance(pPopulation);
-        } else if(pFitnessFunction == 2){            
-            shortestPath(pPopulation);
+        } else if (pFitnessFunction == 2) {
+            breadcrumbs(pPopulation);
+        } else if (pFitnessFunction == 3) {
+            countOfMoves(pPopulation);
         }
-        
+
         Collections.sort(pPopulation, new AgentComparator());
     }
-    
-    private static void absoluteDistance(List<Agent> pPopulation){
-        for(Agent agent : pPopulation){
+
+    private static void absoluteDistance(List<Agent> pPopulation) {
+        for (Agent agent : pPopulation) {
             int xGoalDist = Config.DEFAULT.getGoalCordX() - agent.getXCord();
             int yGoalDist = Config.DEFAULT.getGoalCordY() - agent.getYCord();
             int fitness = -1 * (Math.abs(xGoalDist) + Math.abs(yGoalDist));
-            
+
             agent.setFitness(fitness);
-            
+
             agent.resetValues();
         }
     }
-    
-    private static void shortestPath(List<Agent> pPopulation){
-        for(Agent agent : pPopulation){
-            int fitness = agent.getCollectedWayPoints();
-            if(agent.isGoalReached()){
-                fitness = fitness + 500;
+
+    private static void countOfMoves(List<Agent> pPopulation) {
+        for (Agent agent : pPopulation) {
+            int fitness;
+            if (agent.isGoalReached()) {
+                fitness = 1000 - agent.getStepsTaken();
+            } else {
+                fitness = agent.getStepsTaken() - 1000;
             }
+
             agent.setFitness(fitness);
+
+            agent.resetValues();
         }
     }
 
+    private static void breadcrumbs(List<Agent> pPopulation) {
+        for (Agent agent : pPopulation) {
+            int fitness = agent.getCollectedWayPoints();
+
+            if (agent.isGoalReached()) {
+                fitness += 1000;
+            }
+
+            agent.setFitness(fitness);
+
+            agent.resetValues();
+        }
+    }
 }

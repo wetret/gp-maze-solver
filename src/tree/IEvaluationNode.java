@@ -3,8 +3,8 @@ package tree;
 import maze.Maze;
 
 
-public interface IEvaluationNode extends INode{
-    
-    public boolean evaluate(Maze pMaze);
-    
+public interface IEvaluationNode
+        extends INode {
+
+    public boolean evaluate(Maze pMaze, EOrientation pOrientation);
 }

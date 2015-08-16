@@ -10,21 +10,22 @@ import maze.Maze;
 import utils.Config;
 
 
-public class Window extends JPanel{
-    
+public class Window
+        extends JPanel {
+
     private static final long serialVersionUID = 1L;
-    private Maze mMaze;
-    
+    private Maze              mMaze;
+
     public Window(Maze pMaze) {
         mMaze = pMaze;
     }
-    
+
     public void paint(Graphics g) {
-        //clear drawing area
+        // clear drawing area
         Rectangle bounds = this.getBounds();
         g.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
-        //draw the grid
+        // draw the grid
         for (int i = 0; i < Config.DEFAULT.getGridHeight(); i++) {
             for (int j = 0; j < Config.DEFAULT.getGridWidth(); j++) {
                 int cell = mMaze.getGrid()[i][j];
@@ -39,21 +40,20 @@ public class Window extends JPanel{
                 } else if (cell == Config.DEFAULT.getEntryPosition()) {
                     g.setColor(Color.RED);
                 } else if (cell == Config.DEFAULT.getWayPointPosition()) {
-                    g.setColor(Color.YELLOW);
+                    g.setColor(Color.WHITE);
                 } else {
                     g.setColor(Color.WHITE);
                 }
-                
-                if(i == Config.DEFAULT.getEntryCordX() && j == Config.DEFAULT.getEntryCordY()){
+
+                if (i == Config.DEFAULT.getEntryCordX() && j == Config.DEFAULT.getEntryCordY()) {
                     g.setColor(Color.RED);
                 }
-                
+
                 int x = Config.DEFAULT.getPixelSize() * i;
                 int y = Config.DEFAULT.getPixelSize() * j;
-                
+
                 g.fillRect(x, y, Config.DEFAULT.getPixelSize(), Config.DEFAULT.getPixelSize());
             }
-        } 
+        }
     }
-
 }
