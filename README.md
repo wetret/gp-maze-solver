@@ -18,7 +18,7 @@ The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunc
 All other options can be set in the file `Config.java`.
 
 ##Using an evolved Agent Function
-An evolved agent function can be added by using the template EvolvedAgentFunctionExample.java:
+An evolved agent function can be added by using the template `EvolvedAgentFunctionExample.java`:
 * Copy `EvolvedAgentFunctionExample.java` and insert the evolved agent function into the function `ETurn evaluate(Maze pMaze, EOrientation pOrientation) { PASTE EVOLVED AGENT FUNCTION HERE }`.
 * In the function `void withWindow(int mMazeNumber, boolean run)` of the file `Main.java` make a new object of the evolved agent function and name it `root`.
 * Use the command `run <mazenumber>`to see how the agent function performs in the selected maze (needs to be recompiled when using a Unix Shell).
