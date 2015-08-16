@@ -26,6 +26,6 @@ An evolved agent function can be added by using the template `EvolvedAgentFuncti
 ## Mazes
 Until now, no maze generation algorithm is implemented. Mazes are all hardcoded. A new maze can be added in the following way:
 * Add a new function `int[][] maze<mazenumber>()` into the `MazeBuilder.java` file. Include your maze into this function.
-* Make sure that the new number is accepted as a command line argument and by the the mazenumber check in the function `build(int pMazeNumber)` of the file MazeBuilder.java.
+* Make sure that the new number is accepted as a command line argument and by the the mazenumber check in the function `int[][] build(int pMazeNumber)` of the file `MazeBuilder.java`.
 * Make sure that the maze values in `Config.java` are set correctly.
 * Use the maze with one of the commands mentioned above.
