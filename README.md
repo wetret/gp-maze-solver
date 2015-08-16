@@ -10,9 +10,9 @@ This is the repository of my final project for the class "Theory, Programming an
 * In Eclipse the commands can be set under `Run As > Run Configurations > Arguments > Program Arguments`
 
 The following commands are available for execution:
-* `evolve <populationsize> <numberoffitnessfunction>; <mazenumber>`: runs genetic programming on the selected maze with the selected fitness function and population size and returns an agent function
-* `run <mazenumber>`: shows the selected maze while an agent tries to find the exit
-* `show <mazenumber>`: only shows the selected maze
+* `evolve <populationsize> <numberoffitnessfunction> <mazenumber>`: runs genetic programming on the selected maze with the selected fitness function and population size and returns an agent function.
+* `run <mazenumber>`: shows the selected maze while an agent tries to find the exit.
+* `show <mazenumber>`: only shows the selected maze.
 The &lt;mazenumber&gt; has to be between 1 and 6 and the &lt;numberoffitnessfunction&gt; between 1 and 3. The &lt;populationsize> can be any number (1000 is recommended).
 
 All other options can be set in the file `Config.java`.
