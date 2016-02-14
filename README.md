@@ -1,4 +1,5 @@
-# Genetic Programming: Evolution of a Maze Solving Agent
+#Readme
+## Genetic Programming: Evolution of a Maze Solving Agent
 This is the repository of my final project for the class "Theory, Programming and Simulation of Neural Networks". The goal of this project was to evolve an agent function for a maze solving agent by genetic programming. This README is based on `Version 2` of the implementation. In `Version 1` of the implementation the return values and parameters of the functions referenced here could be different.
 
 ## Requirements
